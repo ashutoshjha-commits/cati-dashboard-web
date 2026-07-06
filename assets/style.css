@@ -213,6 +213,7 @@ body {
 }
 
 .row-label { fill: var(--text-secondary); font-size: 11px; }
+.overall-label { fill: var(--text-primary); font-weight: 700; }
 .seg-pct { fill: #fff; font-size: 10px; font-weight: 600; }
 .seg-total { fill: var(--text-muted); font-size: 11px; }
 

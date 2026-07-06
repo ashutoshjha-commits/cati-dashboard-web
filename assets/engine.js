@@ -171,8 +171,11 @@
     const svg = el('svg', { class:'chart-svg', width:'100%', height:h, viewBox:`0 0 ${width} ${h}`, preserveAspectRatio:'xMinYMin meet' });
     rows.forEach((r, i) => {
       const y = i * rowH;
-      const lbl = el('text', { x: marginL-10, y: y+rowH/2+4, 'text-anchor':'end', class:'row-label' });
-      lbl.textContent = r.label; svg.appendChild(lbl);
+      const lbl = el('text', { x: marginL-10, y: y+rowH/2+4, 'text-anchor':'end', class: r.overall ? 'row-label overall-label' : 'row-label' });
+      lbl.textContent = truncate(r.label, 20); svg.appendChild(lbl);
+      if (r.overall) { // separator under the state-level total row
+        svg.appendChild(el('line', { x1: 0, x2: width, y1: y+rowH-1, y2: y+rowH-1, class:'gridline' }));
+      }
       let x = marginL;
       segOrder.forEach(seg => {
         const n = r.counts[seg] || 0; if (n <= 0) return;
@@ -182,7 +185,7 @@
         rect.addEventListener('mousemove', e => showTooltip(e, `${r.label} — ${seg}`, [['Share', fmtPct(p)], ['Count', n], ['Row total', r.total]]));
         rect.addEventListener('mouseleave', hideTooltip);
         svg.appendChild(rect);
-        if (w > 30) { const t = el('text', { x: x+w/2, y: y+rowH/2+4, 'text-anchor':'middle', class:'seg-pct' }); t.textContent = Math.round(p)+'%'; svg.appendChild(t); }
+        if (w > 16) { const t = el('text', { x: x+w/2, y: y+rowH/2+4, 'text-anchor':'middle', class:'seg-pct' }); t.textContent = Math.round(p)+'%'; svg.appendChild(t); }
         x += w;
       });
       const tot = el('text', { x: width-marginR+6, y: y+rowH/2+4, class:'seg-total' });
@@ -256,6 +259,13 @@
     const partyVals = [];
     ALL.forEach(r => { [c.voteNow,c.ae2022,c.ge2024].forEach(col => partyVals.push(r[col])); });
     COLORS.party = buildColorMap(partyVals, 7);
+    // Politically-fixed party colors (color follows the entity, not its rank).
+    // BJP = saffron. Applied whether BJP landed in a slot or would otherwise
+    // share a palette hue. Saffron isn't in the categorical palette, so no clash.
+    const SAFFRON = '#F47216';
+    ['Bharatiya Janata Party (BJP)','BJP'].forEach(k => {
+      if (COLORS.party.map[k] !== undefined) COLORS.party.map[k] = SAFFRON;
+    });
     COLORS.gender = buildColorMap(ALL.map(r=>r[c.gender]), 4);
     COLORS.caste = buildColorMap(ALL.map(r=>r[c.caste]), 7);
     COLORS.age = { map: Object.fromEntries(AGE_ORDER.map((b,i)=>[b,seriesColor(i)])), order: AGE_ORDER, hasOther:false,
@@ -348,8 +358,22 @@
 
     if (rows.length === 0) { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No rows match the current filters.'; body.appendChild(n); addFooter(body); return; }
 
-    // ---------- operational ----------
-    const opHead = section(body,'Operational', F.validOnly?'Valid samples only (toggle above to include invalid).':'All samples in current filter.');
+    // ---------- cross-tabulation (top) ----------
+    section(body,'Cross-Tabulation', 'The "Overall" row is the state-level total; the rest break it down by the dimension you pick — 100% stacked, hover for counts.');
+    buildCutBar(body);
+    const xCards = document.createElement('div'); xCards.className='cards'; body.appendChild(xCards);
+    drawCrosstabs(xCards, rows);
+
+    // ---------- composition (middle) ----------
+    section(body,'Sample Composition', 'Who we reached — as % of the sample in scope.');
+    const compCards = document.createElement('div'); compCards.className='cards'; body.appendChild(compCards);
+    compositionChart(compCards,'Gender', rows, c.gender, null);
+    compositionChart(compCards,'Age Band', rows, null, ageBand);
+    compositionChart(compCards,'Community / Caste', rows, c.caste, null, 8);
+    compositionChart(compCards,'Constituency (AC)', rows, c.ac, null, 10, true);
+
+    // ---------- operational (bottom) ----------
+    section(body,'Operational', F.validOnly?'Valid samples only (toggle above to include invalid).':'All samples in current filter.');
     const opCards = document.createElement('div'); opCards.className='cards'; body.appendChild(opCards);
 
     // daily volume: always show valid vs invalid regardless of validOnly, using raw filtered set
@@ -365,20 +389,6 @@
     const topAgents = Object.entries(agentCnt).sort((a,b)=>b[1]-a[1]).slice(0,10);
     pctBars(card(opCards,'Top 10 Agents','Share of sample in scope'),{color:seriesColor(1),
       rows: topAgents.map(([a,n])=>({label:a,count:n,total:rows.length}))});
-
-    // ---------- composition ----------
-    section(body,'Sample Composition', 'Who we reached — as % of the sample in scope.');
-    const compCards = document.createElement('div'); compCards.className='cards'; body.appendChild(compCards);
-    compositionChart(compCards,'Gender', rows, c.gender, null);
-    compositionChart(compCards,'Age Band', rows, null, ageBand);
-    compositionChart(compCards,'Community / Caste', rows, c.caste, null, 8);
-    compositionChart(compCards,'Constituency (AC)', rows, c.ac, null, 10, true);
-
-    // ---------- cross-tabulation ----------
-    section(body,'Cross-Tabulation', 'Every measure broken down by the dimension you pick — 100% stacked, hover for counts.');
-    buildCutBar(body);
-    const xCards = document.createElement('div'); xCards.className='cards'; body.appendChild(xCards);
-    drawCrosstabs(xCards, rows);
 
     addFooter(body);
   }
@@ -490,27 +500,36 @@
     if (cutBy === 'AgeBand') capped = AGE_ORDER.filter(b=>cutCnt[b]);
     if (cutBy === 'Date') capped = capped.slice().sort();
 
-    measures().forEach(m => {
-      // build rows: one per cut category
-      const dataRows = capped.map(cat => {
-        const counts = {}; let totalRow = 0;
-        rows.forEach(r => {
-          if (cutValue(r) !== cat) return;
-          let seg = m.band ? ageBand(r[c.age]) : (r[m.col]||'').trim();
-          if (!seg) return;
-          seg = m.colors.bucket ? m.colors.bucket(seg) : seg;
-          counts[seg] = (counts[seg]||0)+1; totalRow++;
-        });
-        return { label: cat, total: totalRow, counts };
-      }).filter(r => r.total > 0);
+    // Tally one measure's segment counts over an arbitrary subset of rows.
+    function tally(subset, m) {
+      const counts = {}; let total = 0;
+      subset.forEach(r => {
+        let seg = m.band ? ageBand(r[c.age]) : (r[m.col]||'').trim();
+        if (!seg) return;
+        seg = m.colors.bucket ? m.colors.bucket(seg) : seg;
+        counts[seg] = (counts[seg]||0)+1; total++;
+      });
+      return { total, counts };
+    }
 
-      // "Other" cut categories folded into one row
+    const capSet = new Set(capped);
+    measures().forEach(m => {
+      const dataRows = [];
+
+      // state-level overall row (all rows in scope, ignoring the cut)
+      const ov = tally(rows, m);
+      if (ov.total > 0) dataRows.push({ label: `Overall — ${CFG.name}`, total: ov.total, counts: ov.counts, overall: true });
+
+      // one row per cut category
+      capped.forEach(cat => {
+        const t = tally(rows.filter(r => cutValue(r) === cat), m);
+        if (t.total > 0) dataRows.push({ label: cat, total: t.total, counts: t.counts });
+      });
+
+      // remaining cut categories folded into one "Other" row
       if (foldRest) {
-        const counts={}; let totalRow=0; const capSet=new Set(capped);
-        rows.forEach(r=>{ const cat=cutValue(r); if(!cat||capSet.has(cat))return;
-          let seg=m.band?ageBand(r[c.age]):(r[m.col]||'').trim(); if(!seg)return;
-          seg=m.colors.bucket?m.colors.bucket(seg):seg; counts[seg]=(counts[seg]||0)+1; totalRow++; });
-        if (totalRow>0) dataRows.push({label:`Other (${cats.length-capped.length})`, total:totalRow, counts});
+        const t = tally(rows.filter(r => { const cv = cutValue(r); return cv && !capSet.has(cv); }), m);
+        if (t.total > 0) dataRows.push({ label: `Other (${cats.length-capped.length})`, total: t.total, counts: t.counts });
       }
 
       const body = card(parent, m.title, `by ${CUT_DIMS.find(d=>d.key===cutBy).label}`);
