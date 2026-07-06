@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CATI Manipur — Dashboard</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>📊</text></svg>">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="../../assets/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>CATI Manipur</h1>
+      <div class="meta"><a href="../../">&larr; all projects</a></div>
+    </div>
+    <button class="theme-toggle" id="theme-toggle">Toggle theme</button>
+  </div>
+  <div id="cati-root"><p class="footer-note">Loading data…</p></div>
+</div>
+<script src="config.js"></script>
+<script src="../../assets/engine.js"></script>
+<script>CATIEngine.render(window.CATI_PROJECT);</script>
+</body>
+</html>
