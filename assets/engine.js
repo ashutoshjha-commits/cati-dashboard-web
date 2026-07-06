@@ -120,8 +120,52 @@
     return { map, order, hasOther, colorFor: (k) => map[k] || otherColor(), bucket: (k) => (map[k] ? k : 'Other') };
   }
 
+  // Party color map with politically-fixed colors: INC = blue, BJP = saffron
+  // (pinned whenever they appear). Other parties get distinct hues that avoid
+  // blue and orange so nothing is confused with INC/BJP. Same map is shared
+  // across Vote Now / 2022 AE / 2024 GE so a party keeps one color everywhere.
+  // Pinned by party CODE (the last "(...)" in the name) so it matches regardless
+  // of the full spelling — "Indian National Congress (INC)" and "Congress (INC)"
+  // both pin to blue.
+  const PARTY_PIN_CODES = { 'INC': '#2a78d6', 'BJP': '#F47216' };
+  function buildPartyColorMap(values) {
+    const cnt = {};
+    values.forEach(v => { const k=(v||'').trim(); if (k) cnt[k]=(cnt[k]||0)+1; });
+    const ordered = Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]);
+    // slots 2,3,4,5,6,7 = aqua,yellow,green,violet,red,magenta (skip blue & orange)
+    const palette = [1,2,3,4,5,6].map(i => seriesColor(i));
+    const map = {}, order = []; let pi = 0;
+    for (const party of ordered) {
+      const pin = PARTY_PIN_CODES[lastTopLevelParen(party)];
+      if (pin) { if (map[party]===undefined){ map[party]=pin; order.push(party); } continue; }
+      if (pi < palette.length) { map[party]=palette[pi++]; order.push(party); }
+    }
+    const hasOther = ordered.some(p => map[p]===undefined);
+    if (hasOther) order.push('Other');
+    return { map, order, hasOther, colorFor:(k)=>map[k]||otherColor(), bucket:(k)=>(map[k]?k:'Other') };
+  }
+
   function pct(n, d) { return d ? (n / d * 100) : 0; }
   function fmtPct(x) { return x.toFixed(x < 10 ? 1 : 0) + '%'; }
+
+  // Short party code from a full name: last TOP-LEVEL "(...)" group, so nested
+  // cases like "Janata Dal (United) (JD(U))" yield "JD(U)" not "U".
+  function lastTopLevelParen(s) {
+    let depth = 0, start = -1, last = null;
+    for (let i = 0; i < s.length; i++) {
+      if (s[i] === '(') { if (depth === 0) start = i + 1; depth++; }
+      else if (s[i] === ')') { depth--; if (depth === 0 && start !== -1) { last = s.slice(start, i); start = -1; } }
+    }
+    return last;
+  }
+  function shortPartyLabel(name) {
+    if (name === 'Other') return 'Other';
+    const code = lastTopLevelParen(name);
+    // only treat the parenthetical as a code if it's an uppercase abbreviation
+    // (INC, BJP, JD(U), RPI(A)) — not lowercase notes like "(Don't prompt)".
+    if (code && /^[A-Z0-9()&.\/-]{2,8}$/.test(code)) return code;
+    return name.length > 14 ? name.slice(0,13)+'…' : name;
+  }
 
   // ---- stat tile ----
   function statTile(container, { label, value, sub, status }) {
@@ -210,7 +254,8 @@
   }
 
   // ---- 100% stacked horizontal bars (crosstab: measure by cut dimension) ----
-  function stacked100(container, { rows, segOrder, colorFor, height }) {
+  // segLabelFn (optional): short label per segment shown on wide bars (e.g. party code).
+  function stacked100(container, { rows, segOrder, colorFor, height, segLabelFn }) {
     // rows: [{label, total, counts:{seg:n}}]
     const rowH = 34, width = VBW;
     const marginL = 130, marginR = 44;
@@ -233,7 +278,11 @@
         rect.addEventListener('mousemove', e => showTooltip(e, `${r.label} — ${seg}`, [['Share', fmtPct(p)], ['Count', n], ['Row total', r.total]]));
         rect.addEventListener('mouseleave', hideTooltip);
         svg.appendChild(rect);
-        if (w > 16) { const t = el('text', { x: x+w/2, y: y+rowH/2+4, 'text-anchor':'middle', class:'seg-pct' }); t.textContent = Math.round(p)+'%'; svg.appendChild(t); }
+        if (w > 16) {
+          const short = segLabelFn ? segLabelFn(seg) : '';
+          const txt = (short && w > 62) ? `${short} ${Math.round(p)}%` : Math.round(p)+'%';
+          const t = el('text', { x: x+w/2, y: y+rowH/2+4, 'text-anchor':'middle', class:'seg-pct' }); t.textContent = txt; svg.appendChild(t);
+        }
         x += w;
       });
       const tot = el('text', { x: width-marginR+6, y: y+rowH/2+4, class:'seg-total' });
@@ -306,14 +355,7 @@
     // Parties share one map across the three vote columns.
     const partyVals = [];
     ALL.forEach(r => { [c.voteNow,c.ae2022,c.ge2024].forEach(col => partyVals.push(r[col])); });
-    COLORS.party = buildColorMap(partyVals, 7);
-    // Politically-fixed party colors (color follows the entity, not its rank).
-    // BJP = saffron. Applied whether BJP landed in a slot or would otherwise
-    // share a palette hue. Saffron isn't in the categorical palette, so no clash.
-    const SAFFRON = '#F47216';
-    ['Bharatiya Janata Party (BJP)','BJP'].forEach(k => {
-      if (COLORS.party.map[k] !== undefined) COLORS.party.map[k] = SAFFRON;
-    });
+    COLORS.party = buildPartyColorMap(partyVals);
     COLORS.gender = buildColorMap(ALL.map(r=>r[c.gender]), 4);
     COLORS.caste = buildColorMap(ALL.map(r=>r[c.caste]), 7);
     COLORS.age = { map: Object.fromEntries(AGE_ORDER.map((b,i)=>[b,seriesColor(i)])), order: AGE_ORDER, hasOther:false,
@@ -409,7 +451,13 @@
 
     if (rows.length === 0) { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No rows match the current filters.'; body.appendChild(n); addFooter(body); return; }
 
-    // ---------- AC target tracker (only when a per-AC target is configured) ----------
+    // ---------- cross-tabulation (top: vote-related) ----------
+    section(body,'Cross-Tabulation', 'The "Overall" row is the state-level total; the rest break it down by the dimension you pick — 100% stacked, hover for counts.');
+    buildCutBar(body);
+    const xCards = document.createElement('div'); xCards.className='cards'; body.appendChild(xCards);
+    drawCrosstabs(xCards, rows);
+
+    // ---------- AC target tracker (below cross-tabs, only when a per-AC target is configured) ----------
     if (CFG.perAcTarget) {
       const tgt = CFG.perAcTarget;
       // valid samples per real constituency, respecting Vendor/AC/Date filters but always counting VALID toward target
@@ -435,12 +483,6 @@
       if (trackerRows.length) acTracker(acBody, { rows: trackerRows, target: tgt });
       else { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No constituency data in scope.'; acBody.appendChild(n); }
     }
-
-    // ---------- cross-tabulation (top) ----------
-    section(body,'Cross-Tabulation', 'The "Overall" row is the state-level total; the rest break it down by the dimension you pick — 100% stacked, hover for counts.');
-    buildCutBar(body);
-    const xCards = document.createElement('div'); xCards.className='cards'; body.appendChild(xCards);
-    drawCrosstabs(xCards, rows);
 
     // ---------- composition (middle) ----------
     section(body,'Sample Composition', 'Who we reached — as % of the sample in scope.');
@@ -623,8 +665,12 @@
 
       const body = card(parent, m.title, `by ${cutDims().find(d=>d.key===cutBy).label}`);
       const segOrder = m.colors.order.slice();
-      legendRow(body, segOrder.map(s=>({name:s,color:m.colors.colorFor(s)})));
-      stacked100(body, { rows: dataRows, segOrder, colorFor: (s)=>m.colors.colorFor(s) });
+      const isParty = m.colors === COLORS.party;
+      const nameFor = isParty ? shortPartyLabel : (s)=>s;
+      legendRow(body, segOrder.map(s=>({name:nameFor(s),color:m.colors.colorFor(s)})));
+      const chartDiv = document.createElement('div'); body.appendChild(chartDiv); // own container so legend isn't wiped
+      stacked100(chartDiv, { rows: dataRows, segOrder, colorFor: (s)=>m.colors.colorFor(s),
+                             segLabelFn: isParty ? shortPartyLabel : null });
     });
   }
 
