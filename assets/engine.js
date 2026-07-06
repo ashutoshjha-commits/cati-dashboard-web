@@ -48,6 +48,27 @@
   }
   const AGE_ORDER = ['18–25','26–35','36–45','46–60','60+'];
 
+  // Income → band. Non-numeric answers (NA / no answer / blank) return null (skipped).
+  function incomeBand(raw) {
+    const s = String(raw == null ? '' : raw).replace(/[,\s₹]/g, '').trim();
+    if (!/^\d/.test(s)) return null;
+    const n = parseInt(s, 10);
+    if (isNaN(n)) return null;
+    if (n <= 5000) return '≤5k';
+    if (n <= 15000) return '5k–15k';
+    if (n <= 30000) return '15k–30k';
+    return '30k+';
+  }
+  const INCOME_ORDER = ['≤5k','5k–15k','15k–30k','30k+'];
+
+  // Leading integer of an AC label like "11.Panaji" / "10 Aldona" / "2 Pernem (SC)".
+  function acNumber(label) {
+    const m = String(label).trim().match(/^(\d+)/);
+    return m ? parseInt(m[1], 10) : Infinity;
+  }
+  // A "real" constituency = starts with a number (excludes Others / Call Disconnected / blank).
+  function isRealAC(label) { return /^\d/.test(String(label).trim()); }
+
   function el(tag, attrs) {
     const e = document.createElementNS(svgNS, tag);
     for (const k in attrs) e.setAttribute(k, attrs[k]);
@@ -161,6 +182,33 @@
     container.innerHTML = ''; container.appendChild(svg);
   }
 
+  // ---- AC target tracker: progress bars vs a per-AC target ----
+  function acTracker(container, { rows, target }) {
+    const rowH = 26, width = VBW;
+    const marginL = 150, marginR = 104;
+    const plotW = width - marginL - marginR;
+    const height = rows.length * rowH + 6;
+    const svg = el('svg', { class:'chart-svg', width:'100%', height, viewBox:`0 0 ${width} ${height}`, preserveAspectRatio:'xMinYMin meet' });
+    const good = cssVar('--status-good'), warn = cssVar('--status-warning'), norm = cssVar('--series-1'), track = cssVar('--gridline');
+    rows.forEach((r, i) => {
+      const y = i * rowH;
+      const p = target ? (r.done / target * 100) : 0;
+      const reached = r.done >= target, almost = !reached && r.done >= 0.9 * target;
+      const color = reached ? good : almost ? warn : norm;
+      const lbl = el('text', { x: marginL-10, y: y+rowH/2+4, 'text-anchor':'end', class:'row-label' });
+      lbl.textContent = truncate(r.ac, 24); svg.appendChild(lbl);
+      svg.appendChild(el('rect', { x: marginL, y: y+5, width: plotW, height: rowH-12, fill: track, rx:3 }));
+      const w = Math.max(Math.min(p,100)/100 * plotW, 2);
+      const rect = el('rect', { x: marginL, y: y+5, width: w, height: rowH-12, fill: color, rx:3, class:'bar' });
+      rect.addEventListener('mousemove', e => showTooltip(e, r.ac, [['Done', r.done], ['Target', target], ['Progress', fmtPct(p)], ['Remaining', Math.max(0, target-r.done)]]));
+      rect.addEventListener('mouseleave', hideTooltip);
+      svg.appendChild(rect);
+      const vl = el('text', { x: width, y: y+rowH/2+4, 'text-anchor':'end', class:'direct-label' });
+      vl.textContent = `${r.done}/${target} · ${Math.round(p)}%`; svg.appendChild(vl);
+    });
+    container.innerHTML = ''; container.appendChild(svg);
+  }
+
   // ---- 100% stacked horizontal bars (crosstab: measure by cut dimension) ----
   function stacked100(container, { rows, segOrder, colorFor, height }) {
     // rows: [{label, total, counts:{seg:n}}]
@@ -270,6 +318,8 @@
     COLORS.caste = buildColorMap(ALL.map(r=>r[c.caste]), 7);
     COLORS.age = { map: Object.fromEntries(AGE_ORDER.map((b,i)=>[b,seriesColor(i)])), order: AGE_ORDER, hasOther:false,
                    colorFor:(k)=>COLORS.age.map[k]||otherColor(), bucket:(k)=>k };
+    COLORS.income = { map: Object.fromEntries(INCOME_ORDER.map((b,i)=>[b,seriesColor(i)])), order: INCOME_ORDER, hasOther:false,
+                   colorFor:(k)=>COLORS.income.map[k]||otherColor(), bucket:(k)=>k };
   }
 
   // filter state
@@ -312,8 +362,9 @@
     }
 
     sel('Vendor','Vendor', distinct(ALL,c.vendor).map(v=>({value:v,text:v})));
-    sel('Constituency','AC', distinct(ALL,c.ac).filter(v=>v.toUpperCase()!=='NO').map(v=>({value:v,text:v})));
-    sel('Form Version','Form', distinct(ALL,c.formVersion).map(v=>({value:v,text:v})));
+    sel('Constituency','AC', distinct(ALL,c.ac).filter(v=>v.toUpperCase()!=='NO')
+        .sort((a,b)=>acNumber(a)-acNumber(b)).map(v=>({value:v,text:v})));
+    if (c.formVersion) sel('Form Version','Form', distinct(ALL,c.formVersion).map(v=>({value:v,text:v})));
     const dates = Array.from(new Set(ALL.map(r=>{const d=parseDMY(r[c.timestamp]);return d?isoDate(d):null;}).filter(Boolean))).sort();
     sel('Date','Date', dates.map(d=>({value:d,text:d})));
 
@@ -357,6 +408,33 @@
     statTile(tiles,{label:'Internal QC Done',value:fmtPct(pct(internalQC,total)),sub:`${internalQC} of ${total}`,status:internalQC===0?'critical':(pct(internalQC,total)<50?'warning':'good')});
 
     if (rows.length === 0) { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No rows match the current filters.'; body.appendChild(n); addFooter(body); return; }
+
+    // ---------- AC target tracker (only when a per-AC target is configured) ----------
+    if (CFG.perAcTarget) {
+      const tgt = CFG.perAcTarget;
+      // valid samples per real constituency, respecting Vendor/AC/Date filters but always counting VALID toward target
+      const validRaw = applyFiltersRaw().filter(r => r[c.finalCall] === CFG.validValue);
+      const acCnt = {};
+      validRaw.forEach(r => { const a=(r[c.ac]||'').trim(); if (isRealAC(a)) acCnt[a]=(acCnt[a]||0)+1; });
+      const trackerRows = Object.entries(acCnt).map(([ac,done])=>({ac,done}))
+        .sort((a,b)=> (b.done/tgt)-(a.done/tgt) || acNumber(a.ac)-acNumber(b.ac));
+      const reached = trackerRows.filter(r=>r.done>=tgt).length;
+      const almost  = trackerRows.filter(r=>r.done<tgt && r.done>=0.9*tgt).length;
+
+      section(body,'AC Target Tracker',
+        `Valid samples vs target of ${tgt} per constituency — closest to target first. ${reached} reached · ${almost} almost · ${trackerRows.length} ACs live.`);
+      const acWrap = document.createElement('div'); acWrap.className='cards'; body.appendChild(acWrap);
+      const acCard = document.createElement('div'); acCard.className='card'; acCard.style.gridColumn='1 / -1';
+      const h=document.createElement('h2'); h.textContent='Constituency progress'; acCard.appendChild(h);
+      legendRow(acCard, [
+        {name:`Reached (≥${tgt}) — stop`, color:cssVar('--status-good')},
+        {name:'Almost (≥90%)', color:cssVar('--status-warning')},
+        {name:'In progress', color:cssVar('--series-1')}
+      ]);
+      const acBody=document.createElement('div'); acCard.appendChild(acBody); acWrap.appendChild(acCard);
+      if (trackerRows.length) acTracker(acBody, { rows: trackerRows, target: tgt });
+      else { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No constituency data in scope.'; acBody.appendChild(n); }
+    }
 
     // ---------- cross-tabulation (top) ----------
     section(body,'Cross-Tabulation', 'The "Overall" row is the state-level total; the rest break it down by the dimension you pick — 100% stacked, hover for counts.');
@@ -439,23 +517,29 @@
     const bar = document.createElement('div'); bar.className='cutby-bar';
     const lab = document.createElement('label'); lab.textContent='Cut by:'; bar.appendChild(lab);
     const s = document.createElement('select');
-    CUT_DIMS.forEach(d => { const o=document.createElement('option'); o.value=d.key; o.textContent=d.label; s.appendChild(o); });
+    cutDims().forEach(d => { const o=document.createElement('option'); o.value=d.key; o.textContent=d.label; s.appendChild(o); });
     s.value = cutBy;
     s.addEventListener('change', () => { cutBy = s.value; const xc=document.getElementById('xtab-cards'); if(xc){ xc.innerHTML=''; drawCrosstabs(xc, applyFilters()); } });
     bar.appendChild(s); parent.appendChild(bar);
   }
 
-  // dimensions you can cut by
-  const CUT_DIMS = [
-    { key:'Vendor',  label:'Vendor' },
-    { key:'Agent',   label:'Agent' },
-    { key:'AC',      label:'Constituency (AC)' },
-    { key:'Gender',  label:'Gender' },
-    { key:'AgeBand', label:'Age Band' },
-    { key:'Caste',   label:'Community / Caste' },
-    { key:'Form',    label:'Form Version' },
-    { key:'Date',    label:'Date' }
-  ];
+  // dimensions you can cut by — built from whatever columns the config declares,
+  // so a sheet without Form Version (Goa) or with Income adapts automatically.
+  function cutDims() {
+    const c = CFG.columns;
+    const dims = [
+      { key:'Vendor',  label:'Vendor' },
+      { key:'Agent',   label:'Agent' },
+      { key:'AC',      label:'Constituency (AC)' },
+      { key:'Gender',  label:'Gender' },
+      { key:'AgeBand', label:'Age Band' },
+      { key:'Caste',   label:'Community / Caste' }
+    ];
+    if (c.income) dims.push({ key:'IncomeBand', label:'Income Band' });
+    if (c.formVersion) dims.push({ key:'Form', label:'Form Version' });
+    dims.push({ key:'Date', label:'Date' });
+    return dims;
+  }
 
   function cutValue(r) {
     const c = CFG.columns;
@@ -466,23 +550,26 @@
       case 'Gender': return (r[c.gender]||'').trim();
       case 'AgeBand':return ageBand(r[c.age]) || '';
       case 'Caste':  return (r[c.caste]||'').trim();
-      case 'Form':   return (r[c.formVersion]||'').trim();
+      case 'IncomeBand': return incomeBand(r[c.income]) || '';
+      case 'Form':   return c.formVersion ? (r[c.formVersion]||'').trim() : '';
       case 'Date':   { const d=parseDMY(r[c.timestamp]); return d?isoDate(d):''; }
     }
     return '';
   }
 
-  // the measures each cut is crossed against
+  // the measures each cut is crossed against — Income added only if configured.
   function measures() {
     const c = CFG.columns;
-    return [
+    const list = [
       { title:'Vote Now', col:c.voteNow, colors:COLORS.party },
       { title:'2022 AE',  col:c.ae2022,  colors:COLORS.party },
       { title:'2024 GE',  col:c.ge2024,  colors:COLORS.party },
       { title:'Gender',   col:c.gender,  colors:COLORS.gender },
-      { title:'Age Band', band:true,     colors:COLORS.age },
+      { title:'Age Band', derive:(r)=>ageBand(r[c.age]), colors:COLORS.age },
       { title:'Community / Caste', col:c.caste, colors:COLORS.caste }
     ];
+    if (c.income) list.push({ title:'Income Band', derive:(r)=>incomeBand(r[c.income]), colors:COLORS.income });
+    return list;
   }
 
   function drawCrosstabs(parent, rows) {
@@ -496,15 +583,17 @@
     const CAP = 12;
     let capped = cats.slice(0, CAP);
     const foldRest = cats.length > CAP;
-    // Age band & Date read better in natural order
+    // Age/Income bands & Date read better in natural order; AC by its number
     if (cutBy === 'AgeBand') capped = AGE_ORDER.filter(b=>cutCnt[b]);
+    if (cutBy === 'IncomeBand') capped = INCOME_ORDER.filter(b=>cutCnt[b]);
     if (cutBy === 'Date') capped = capped.slice().sort();
+    if (cutBy === 'AC') capped = capped.slice().sort((a,b)=>acNumber(a)-acNumber(b));
 
     // Tally one measure's segment counts over an arbitrary subset of rows.
     function tally(subset, m) {
       const counts = {}; let total = 0;
       subset.forEach(r => {
-        let seg = m.band ? ageBand(r[c.age]) : (r[m.col]||'').trim();
+        let seg = m.derive ? m.derive(r) : (r[m.col]||'').trim();
         if (!seg) return;
         seg = m.colors.bucket ? m.colors.bucket(seg) : seg;
         counts[seg] = (counts[seg]||0)+1; total++;
@@ -532,7 +621,7 @@
         if (t.total > 0) dataRows.push({ label: `Other (${cats.length-capped.length})`, total: t.total, counts: t.counts });
       }
 
-      const body = card(parent, m.title, `by ${CUT_DIMS.find(d=>d.key===cutBy).label}`);
+      const body = card(parent, m.title, `by ${cutDims().find(d=>d.key===cutBy).label}`);
       const segOrder = m.colors.order.slice();
       legendRow(body, segOrder.map(s=>({name:s,color:m.colors.colorFor(s)})));
       stacked100(body, { rows: dataRows, segOrder, colorFor: (s)=>m.colors.colorFor(s) });
