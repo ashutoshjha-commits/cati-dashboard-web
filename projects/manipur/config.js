@@ -2,16 +2,23 @@
 // engine.js and style.css are the only shared code.
 window.CATI_PROJECT = {
   name: 'Manipur',
-  csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTu9Tsu3huiYOe9T847M3AL4fW5M4x2VH3Vxybe0uI6CfriKnSjZUfCkZpfPDqFENbtKii9hjhcCuCT/pub?gid=1610357481&single=true&output=csv',
+  csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRFpNeye0PdwJQOwosiouaSFIKzLxlTs060I8dc1sseKPUNmwvukVd8meKXhuNJpydI_9vDKqd8Fa9r/pub?gid=1360204096&single=true&output=csv',
 
   target: 1200,
   startDate: '2026-07-04',   // yyyy-mm-dd
   deadline: '2026-07-06',    // yyyy-mm-dd
 
-  // Header names exactly as they appear in the Samples sheet.
+  // AC closure & internal-QC tracking (drives the "AC Closure & QC" section).
+  // An AC closes at > closeThreshold valid samples (after Auto QC); a closed AC
+  // is counted internally-QCed once ≥ qcCoverageThreshold of its valid samples
+  // carry an internal-QC verdict.
+  closeThreshold: 200,
+  qcCoverageThreshold: 0.30,
+  acNameColumn: 'AC Name',
+
+  // Header names exactly as they appear in the Tracker sheet.
   columns: {
     vendor: 'Vendor',
-    formVersion: 'Form Version',
     timestamp: 'Timestamp',
     agentId: 'Agent ID',
     mobile: 'Mobile',
@@ -20,14 +27,15 @@ window.CATI_PROJECT = {
     ac: 'AC',
     voteNow: 'Vote Now',
     ae2022: '2022 AE',
-    ge2024: '2024 GE',
     caste: 'Caste',
     autoQC: 'Auto QC',
     finalCall: 'Final Call',
     qcMemberVendor: 'QC Member (Vendor)',
     sampleQualityVendor: 'Sample Quality (Vendor)',
-    qcMemberInternal: 'QC Member (Internal)',
-    sampleQualityInternal: 'Sample Quality (Internal)'
+    // Internal QC on this sheet lives in the IM verdict column (the older
+    // "QC Member (Internal)" column is unused / empty here).
+    qcMemberInternal: 'IM Final Call (Internal QC Verdict)',
+    internalQCDone: 'IM Final Call (Internal QC Verdict)'
   },
 
   validValue: 'Valid'

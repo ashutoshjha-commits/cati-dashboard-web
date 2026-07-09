@@ -449,6 +449,9 @@
     statTile(tiles,{label:'Vendor QC Done',value:fmtPct(pct(vendorQC,total)),sub:`${vendorQC} of ${total}`,status:pct(vendorQC,total)<50?'warning':'good'});
     statTile(tiles,{label:'Internal QC Done',value:fmtPct(pct(internalQC,total)),sub:`${internalQC} of ${total}`,status:internalQC===0?'critical':(pct(internalQC,total)<50?'warning':'good')});
 
+    // ---------- AC closure & QC status (only when a close threshold is configured) ----------
+    if (CFG.closeThreshold) acClosureSection(body);
+
     if (rows.length === 0) { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No rows match the current filters.'; body.appendChild(n); addFooter(body); return; }
 
     // ---------- cross-tabulation (top: vote-related) ----------
@@ -531,6 +534,86 @@
     return h;
   }
 
+  // ---- AC closure & internal-QC status -------------------------------------
+  // Config-gated (needs CFG.closeThreshold). An AC "closes" once its VALID
+  // (post-Auto-QC) sample count exceeds closeThreshold. A closed AC counts as
+  // internally QCed once ≥ qcCoverageThreshold of its valid samples carry an
+  // internal-QC verdict (CFG.columns.internalQCDone, falling back to
+  // qcMemberInternal). Always computed on the valid set, respecting the
+  // Vendor / AC / Date filters (ignores the valid-only toggle).
+  function acClosureSection(body) {
+    const c = CFG.columns;
+    const threshold = CFG.closeThreshold;
+    const covNeed = (CFG.qcCoverageThreshold != null) ? CFG.qcCoverageThreshold : 0.30;
+    const covPct = Math.round(covNeed * 100);
+    const qcCol = c.internalQCDone || c.qcMemberInternal;
+    const nameCol = CFG.acNameColumn;
+
+    const validRaw = applyFiltersRaw().filter(r => r[c.finalCall] === CFG.validValue);
+    const acc = {};
+    validRaw.forEach(r => {
+      const a = (r[c.ac] || '').trim();
+      if (!isRealAC(a)) return;
+      if (!acc[a]) acc[a] = { valid:0, qced:0, name: nameCol ? (r[nameCol]||'').trim() : '' };
+      acc[a].valid++;
+      if (qcCol && (r[qcCol]||'').trim() !== '') acc[a].qced++;
+    });
+
+    const rows = Object.entries(acc).map(([ac,d]) => {
+      const cov = d.valid ? d.qced/d.valid : 0;
+      const closed = d.valid > threshold;
+      return { ac, name:d.name, valid:d.valid, qced:d.qced, cov, closed, qcDone: closed && cov >= covNeed };
+    }).sort((a,b) => (b.closed-a.closed) || (b.valid-a.valid) || acNumber(a.ac)-acNumber(b.ac));
+
+    const closedRows = rows.filter(r => r.closed);
+    const closedN = closedRows.length;
+    const qcedN = closedRows.filter(r => r.qcDone).length;
+    const pendingN = closedN - qcedN;
+    const postQc = closedRows.reduce((s,r)=>s+r.qced,0);
+    const closedValid = closedRows.reduce((s,r)=>s+r.valid,0);
+
+    section(body, 'AC Closure & QC',
+      `An AC closes at >${threshold} valid samples (after Auto QC). A closed AC is counted as internally QCed once ≥${covPct}% of its valid samples carry an internal-QC verdict.`);
+
+    const tiles = document.createElement('div'); tiles.className='tiles'; body.appendChild(tiles);
+    statTile(tiles, { label:'ACs Closed', value:String(closedN), sub:`of ${rows.length} live · >${threshold} valid` });
+    statTile(tiles, { label:'Closed & QCed', value:String(qcedN), sub:`≥${covPct}% internally QCed`, status: qcedN ? 'good' : undefined });
+    statTile(tiles, { label:'Closed · Pending QC', value:String(pendingN), sub:`<${covPct}% internally QCed`, status: pendingN ? 'warning' : 'good' });
+    statTile(tiles, { label:'Post-QC Samples (closed ACs)', value:postQc.toLocaleString(), sub:`of ${closedValid.toLocaleString()} valid in closed ACs` });
+
+    if (!rows.length) return;
+
+    const wrap = document.createElement('div'); wrap.className='cards'; body.appendChild(wrap);
+    const cardEl = document.createElement('div'); cardEl.className='card'; cardEl.style.gridColumn='1 / -1';
+    const h = document.createElement('h2'); h.textContent='By constituency'; cardEl.appendChild(h);
+    const sub = document.createElement('p'); sub.className='card-sub';
+    sub.textContent = 'Valid = samples passing Auto QC (Final Call = Valid). Closed ACs listed first.';
+    cardEl.appendChild(sub);
+
+    const good = cssVar('--status-good'), warn = cssVar('--status-warning'), muted = cssVar('--text-muted');
+    const tbl = document.createElement('table'); tbl.className='data-table';
+    const thead = document.createElement('thead');
+    thead.innerHTML = '<tr><th>Constituency</th><th>Valid (post Auto-QC)</th><th>Closed?</th>'
+      + '<th>Internal QCed</th><th>QC Coverage</th><th>QC Status</th></tr>';
+    tbl.appendChild(thead);
+    const tb = document.createElement('tbody');
+    rows.forEach(r => {
+      const tr = document.createElement('tr');
+      const label = r.name ? `${r.ac} ${r.name}` : r.ac;
+      const closedCell = r.closed
+        ? `<span style="color:${good};font-weight:600">Closed</span>`
+        : `<span style="color:${muted}">Open</span>`;
+      let qcCell = `<span style="color:${muted}">—</span>`;
+      if (r.closed) qcCell = r.qcDone
+        ? `<span style="color:${good};font-weight:600">QCed</span>`
+        : `<span style="color:${warn};font-weight:600">Pending</span>`;
+      tr.innerHTML = `<td>${label}</td><td>${r.valid}</td><td>${closedCell}</td>`
+        + `<td>${r.qced}</td><td>${fmtPct(r.cov*100)}</td><td>${qcCell}</td>`;
+      tb.appendChild(tr);
+    });
+    tbl.appendChild(tb); cardEl.appendChild(tbl); wrap.appendChild(cardEl);
+  }
+
   // col: column name to count (or null when bandFn derives the key).
   // bandFn: if set, derive key from the Age column via this function.
   function compositionChart(parent, title, rows, col, bandFn, maxSlots, dropNoAC) {
@@ -604,12 +687,14 @@
     const c = CFG.columns;
     const list = [
       { title:'Vote Now', col:c.voteNow, colors:COLORS.party },
-      { title:'2022 AE',  col:c.ae2022,  colors:COLORS.party },
-      { title:'2024 GE',  col:c.ge2024,  colors:COLORS.party },
+      { title:'2022 AE',  col:c.ae2022,  colors:COLORS.party }
+    ];
+    if (c.ge2024) list.push({ title:'2024 GE', col:c.ge2024, colors:COLORS.party });
+    list.push(
       { title:'Gender',   col:c.gender,  colors:COLORS.gender },
       { title:'Age Band', derive:(r)=>ageBand(r[c.age]), colors:COLORS.age },
       { title:'Community / Caste', col:c.caste, colors:COLORS.caste }
-    ];
+    );
     if (c.income) list.push({ title:'Income Band', derive:(r)=>incomeBand(r[c.income]), colors:COLORS.income });
     return list;
   }
