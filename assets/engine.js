@@ -128,6 +128,27 @@
   // of the full spelling — "Indian National Congress (INC)" and "Congress (INC)"
   // both pin to blue.
   const PARTY_PIN_CODES = { 'INC': '#2a78d6', 'BJP': '#F47216' };
+  // Resolve a fixed party colour from a value in EITHER format:
+  //   "Full Name (CODE)"  → code via last parenthesis (Vote Now / Goa columns)
+  //   "CODE (Candidate)"  → leading code, or a plain party label like "BJP" /
+  //                         "CONGRESS / INC" (Manipur 2022 AE grouped by party).
+  function partyPin(name) {
+    const code = lastTopLevelParen(name);
+    if (code && PARTY_PIN_CODES[code]) return PARTY_PIN_CODES[code];
+    const n = String(name || '').toUpperCase();
+    if (/\bBJP\b/.test(n)) return PARTY_PIN_CODES['BJP'];
+    if (/\bINC\b/.test(n) || n.includes('CONGRESS')) return PARTY_PIN_CODES['INC'];
+    return null;
+  }
+  // Leading party label of a "CODE (Candidate)" string → "BJP (Karam Shyam)"
+  // becomes "BJP"; "CONGRESS / INC (…)" becomes "CONGRESS / INC". Values with
+  // no " (" (NOTA / Didn't Vote / Other Parties) pass through unchanged.
+  function partyPrefix(s) {
+    s = String(s || '').trim();
+    if (!s) return '';
+    const i = s.indexOf(' (');
+    return i > 0 ? s.slice(0, i).trim() : s;
+  }
   function buildPartyColorMap(values) {
     const cnt = {};
     values.forEach(v => { const k=(v||'').trim(); if (k) cnt[k]=(cnt[k]||0)+1; });
@@ -136,7 +157,7 @@
     const palette = [1,2,3,4,5,6].map(i => seriesColor(i));
     const map = {}, order = []; let pi = 0;
     for (const party of ordered) {
-      const pin = PARTY_PIN_CODES[lastTopLevelParen(party)];
+      const pin = partyPin(party);
       if (pin) { if (map[party]===undefined){ map[party]=pin; order.push(party); } continue; }
       if (pi < palette.length) { map[party]=palette[pi++]; order.push(party); }
     }
@@ -341,6 +362,7 @@
 
   function render(cfg) {
     CFG = cfg;
+    cutBy = cfg.defaultCut || 'Vendor';
     const root = document.getElementById('cati-root');
     root.innerHTML = '<p class="footer-note">Loading data…</p>';
     Papa.parse(cfg.csvUrl, {
@@ -352,10 +374,13 @@
 
   function buildColorMaps() {
     const c = CFG.columns;
-    // Parties share one map across the three vote columns.
+    // Party map for the "Name (CODE)" vote columns (Vote Now, and 2024 GE when
+    // present). 2022 AE is handled separately below when grouped by party.
     const partyVals = [];
-    ALL.forEach(r => { [c.voteNow,c.ae2022,c.ge2024].forEach(col => partyVals.push(r[col])); });
+    ALL.forEach(r => { partyVals.push(r[c.voteNow]); if (c.ge2024) partyVals.push(r[c.ge2024]); if (!CFG.ae2022GroupByParty) partyVals.push(r[c.ae2022]); });
     COLORS.party = buildPartyColorMap(partyVals);
+    // Manipur candidate survey: 2022 AE is "CODE (Candidate)" → group by party.
+    COLORS.ae22 = buildPartyColorMap(ALL.map(r => partyPrefix(r[c.ae2022])));
     COLORS.gender = buildColorMap(ALL.map(r=>r[c.gender]), 4);
     COLORS.caste = buildColorMap(ALL.map(r=>r[c.caste]), 7);
     COLORS.age = { map: Object.fromEntries(AGE_ORDER.map((b,i)=>[b,seriesColor(i)])), order: AGE_ORDER, hasOther:false,
@@ -449,18 +474,29 @@
     statTile(tiles,{label:'Vendor QC Done',value:fmtPct(pct(vendorQC,total)),sub:`${vendorQC} of ${total}`,status:pct(vendorQC,total)<50?'warning':'good'});
     statTile(tiles,{label:'Internal QC Done',value:fmtPct(pct(internalQC,total)),sub:`${internalQC} of ${total}`,status:internalQC===0?'critical':(pct(internalQC,total)<50?'warning':'good')});
 
-    // ---------- AC closure & QC status (only when a close threshold is configured) ----------
-    if (CFG.closeThreshold) acClosureSection(body);
-
     if (rows.length === 0) { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No rows match the current filters.'; body.appendChild(n); addFooter(body); return; }
 
-    // ---------- cross-tabulation (top: vote-related) ----------
-    section(body,'Cross-Tabulation', 'The "Overall" row is the state-level total; the rest break it down by the dimension you pick — 100% stacked, hover for counts.');
+    // analysis base: Auto-QC-valid minus internal-QC rejections
+    const aRows = analysisSet();
+
+    // ---------- ANALYSIS (top): cross-tabulation ----------
+    section(body,'Cross-Tabulation',
+      'The "Overall" row is the state-level total; the rest break it down by the dimension you pick — 100% stacked, hover for counts.'
+      + (CFG.internalRejectValue ? ' Built on Auto-QC-valid samples with internal-QC rejections removed.' : ''));
     buildCutBar(body);
     const xCards = document.createElement('div'); xCards.className='cards'; body.appendChild(xCards);
-    drawCrosstabs(xCards, rows);
+    drawCrosstabs(xCards, aRows);
 
-    // ---------- AC target tracker (below cross-tabs, only when a per-AC target is configured) ----------
+    // ---------- ANALYSIS: composition ----------
+    section(body,'Sample Composition', 'Who we reached — as % of the analysis sample'
+      + (CFG.internalRejectValue ? ' (post internal-QC).' : '.'));
+    const compCards = document.createElement('div'); compCards.className='cards'; body.appendChild(compCards);
+    compositionChart(compCards,'Gender', aRows, c.gender, null);
+    compositionChart(compCards,'Age Band', aRows, null, ageBand);
+    compositionChart(compCards,'Community / Caste', aRows, c.caste, null, 8);
+    compositionChart(compCards,'Constituency (AC)', aRows, c.ac, null, 16, true);
+
+    // ---------- AC target tracker (only when a per-AC target is configured) ----------
     if (CFG.perAcTarget) {
       const tgt = CFG.perAcTarget;
       // valid samples per real constituency, respecting Vendor/AC/Date filters but always counting VALID toward target
@@ -487,13 +523,8 @@
       else { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No constituency data in scope.'; acBody.appendChild(n); }
     }
 
-    // ---------- composition (middle) ----------
-    section(body,'Sample Composition', 'Who we reached — as % of the sample in scope.');
-    const compCards = document.createElement('div'); compCards.className='cards'; body.appendChild(compCards);
-    compositionChart(compCards,'Gender', rows, c.gender, null);
-    compositionChart(compCards,'Age Band', rows, null, ageBand);
-    compositionChart(compCards,'Community / Caste', rows, c.caste, null, 8);
-    compositionChart(compCards,'Constituency (AC)', rows, c.ac, null, 10, true);
+    // ---------- AC-wise QC: internal rejection (only when a close threshold is configured) ----------
+    if (CFG.closeThreshold) acQCSection(body);
 
     // ---------- operational (bottom) ----------
     section(body,'Operational', F.validOnly?'Valid samples only (toggle above to include invalid).':'All samples in current filter.');
@@ -528,58 +559,83 @@
     });
   }
 
+  // A sample the internal-QC team overturned (verdict = internalRejectValue).
+  function isInternallyRejected(r) {
+    const col = CFG.columns.internalQCDone, rv = CFG.internalRejectValue;
+    return !!(col && rv && (r[col]||'').trim() === rv);
+  }
+  // Base set for the ANALYSIS charts: Auto-QC-valid samples with internal-QC
+  // rejections removed, respecting the Vendor/AC/Date filters. Independent of
+  // the "valid only" toggle (analysis is always on the clean set).
+  function analysisSet() {
+    return applyFiltersRaw().filter(r =>
+      r[CFG.columns.finalCall] === CFG.validValue && !isInternallyRejected(r));
+  }
+
   function section(parent, title, sub) {
     const h = document.createElement('div'); h.className='section-head'; h.textContent=title; parent.appendChild(h);
     if (sub){ const p=document.createElement('div'); p.className='section-sub'; p.textContent=sub; parent.appendChild(p); }
     return h;
   }
 
-  // ---- AC closure & internal-QC status -------------------------------------
-  // Config-gated (needs CFG.closeThreshold). An AC "closes" once its VALID
-  // (post-Auto-QC) sample count exceeds closeThreshold. A closed AC counts as
-  // internally QCed once ≥ qcCoverageThreshold of its valid samples carry an
-  // internal-QC verdict (CFG.columns.internalQCDone, falling back to
-  // qcMemberInternal). Always computed on the valid set, respecting the
-  // Vendor / AC / Date filters (ignores the valid-only toggle).
-  function acClosureSection(body) {
+  // ---- AC-wise QC: internal rejection --------------------------------------
+  // Config-gated (needs CFG.closeThreshold). Per real constituency, over the
+  // Auto-QC-valid samples (respecting Vendor/AC/Date filters): how many the
+  // internal-QC team has reviewed, how many they rejected (verdict =
+  // internalRejectValue), the rejection rate (rejected ÷ reviewed), and the
+  // samples left after removing those rejections (valid − rejected). An AC is
+  // flagged "Closed" at > closeThreshold valid.
+  function acQCSection(body) {
     const c = CFG.columns;
     const threshold = CFG.closeThreshold;
-    const covNeed = (CFG.qcCoverageThreshold != null) ? CFG.qcCoverageThreshold : 0.30;
-    const covPct = Math.round(covNeed * 100);
-    const qcCol = c.internalQCDone || c.qcMemberInternal;
+    const vcol = c.internalQCDone || c.qcMemberInternal;
+    const rejectVal = CFG.internalRejectValue || 'Invalid';
     const nameCol = CFG.acNameColumn;
 
     const validRaw = applyFiltersRaw().filter(r => r[c.finalCall] === CFG.validValue);
+    // distinct vendors in scope → one count column each; latest data date → "active"
+    const vendors = Array.from(new Set(validRaw.map(r => (r[c.vendor]||'').trim()).filter(Boolean))).sort();
+    let maxDay = 0;
+    validRaw.forEach(r => { const d = parseDMY(r[c.timestamp]); if (d) maxDay = Math.max(maxDay, d.getTime()); });
+
     const acc = {};
     validRaw.forEach(r => {
       const a = (r[c.ac] || '').trim();
       if (!isRealAC(a)) return;
-      if (!acc[a]) acc[a] = { valid:0, qced:0, name: nameCol ? (r[nameCol]||'').trim() : '' };
+      if (!acc[a]) acc[a] = { valid:0, checked:0, rejected:0, vend:{}, last:0, name: nameCol ? (r[nameCol]||'').trim() : '' };
       acc[a].valid++;
-      if (qcCol && (r[qcCol]||'').trim() !== '') acc[a].qced++;
+      const v = vcol ? (r[vcol]||'').trim() : '';
+      if (v) acc[a].checked++;
+      if (v === rejectVal) acc[a].rejected++;
+      const vd = (r[c.vendor]||'').trim(); if (vd) acc[a].vend[vd] = (acc[a].vend[vd]||0)+1;
+      const dt = parseDMY(r[c.timestamp]); if (dt) acc[a].last = Math.max(acc[a].last, dt.getTime());
     });
 
-    const rows = Object.entries(acc).map(([ac,d]) => {
-      const cov = d.valid ? d.qced/d.valid : 0;
-      const closed = d.valid > threshold;
-      return { ac, name:d.name, valid:d.valid, qced:d.qced, cov, closed, qcDone: closed && cov >= covNeed };
-    }).sort((a,b) => (b.closed-a.closed) || (b.valid-a.valid) || acNumber(a.ac)-acNumber(b.ac));
+    const rows = Object.entries(acc).map(([ac,d]) => ({
+      ac, name:d.name, valid:d.valid, checked:d.checked, rejected:d.rejected, vend:d.vend,
+      left: d.valid - d.rejected,
+      rate: d.checked ? d.rejected/d.checked : 0,
+      closed: d.valid > threshold,
+      active: maxDay > 0 && d.last === maxDay
+    })).sort((a,b) => (b.closed-a.closed) || (b.valid-a.valid) || acNumber(a.ac)-acNumber(b.ac));
 
-    const closedRows = rows.filter(r => r.closed);
-    const closedN = closedRows.length;
-    const qcedN = closedRows.filter(r => r.qcDone).length;
-    const pendingN = closedN - qcedN;
-    const postQc = closedRows.reduce((s,r)=>s+r.qced,0);
-    const closedValid = closedRows.reduce((s,r)=>s+r.valid,0);
+    const closedN  = rows.filter(r=>r.closed).length;
+    const activeN  = rows.filter(r=>r.active).length;
+    const totValid = rows.reduce((s,r)=>s+r.valid,0);
+    const totChk   = rows.reduce((s,r)=>s+r.checked,0);
+    const totRej   = rows.reduce((s,r)=>s+r.rejected,0);
+    const totLeft  = totValid - totRej;
+    const lastLabel = maxDay ? new Date(maxDay).toLocaleDateString() : '—';
 
-    section(body, 'AC Closure & QC',
-      `An AC closes at >${threshold} valid samples (after Auto QC). A closed AC is counted as internally QCed once ≥${covPct}% of its valid samples carry an internal-QC verdict.`);
+    section(body, 'AC-wise QC — Internal Rejection',
+      `Over Auto-QC-valid samples: internal QC reviews them and rejects some (verdict "${rejectVal}"). Rejection rate = rejected ÷ reviewed; samples left = valid − rejected. Closed at >${threshold} valid. "Active" = received samples on the latest data date (${lastLabel}); the sheet re-reads every load.`);
 
     const tiles = document.createElement('div'); tiles.className='tiles'; body.appendChild(tiles);
     statTile(tiles, { label:'ACs Closed', value:String(closedN), sub:`of ${rows.length} live · >${threshold} valid` });
-    statTile(tiles, { label:'Closed & QCed', value:String(qcedN), sub:`≥${covPct}% internally QCed`, status: qcedN ? 'good' : undefined });
-    statTile(tiles, { label:'Closed · Pending QC', value:String(pendingN), sub:`<${covPct}% internally QCed`, status: pendingN ? 'warning' : 'good' });
-    statTile(tiles, { label:'Post-QC Samples (closed ACs)', value:postQc.toLocaleString(), sub:`of ${closedValid.toLocaleString()} valid in closed ACs` });
+    statTile(tiles, { label:'Active ACs', value:String(activeN), sub:`data on ${lastLabel}`, status: activeN ? 'good' : undefined });
+    statTile(tiles, { label:'Internally Reviewed', value:totChk.toLocaleString(), sub:`of ${totValid.toLocaleString()} valid` });
+    statTile(tiles, { label:'Rejected (internal)', value:totRej.toLocaleString(), sub:`${fmtPct(totChk?totRej/totChk*100:0)} of reviewed`, status: totRej ? 'warning' : 'good' });
+    statTile(tiles, { label:'Net Valid After QC', value:totLeft.toLocaleString(), sub:'valid − rejected' });
 
     if (!rows.length) return;
 
@@ -587,15 +643,16 @@
     const cardEl = document.createElement('div'); cardEl.className='card'; cardEl.style.gridColumn='1 / -1';
     const h = document.createElement('h2'); h.textContent='By constituency'; cardEl.appendChild(h);
     const sub = document.createElement('p'); sub.className='card-sub';
-    sub.textContent = 'Valid = samples passing Auto QC (Final Call = Valid). Closed ACs listed first.';
+    sub.textContent = 'Valid = samples passing Auto QC (Final Call = Valid), split by vendor. Closed ACs listed first.';
     cardEl.appendChild(sub);
 
-    const good = cssVar('--status-good'), warn = cssVar('--status-warning'), muted = cssVar('--text-muted');
+    const good = cssVar('--status-good'), warn = cssVar('--status-warning'), crit = cssVar('--status-critical'), muted = cssVar('--text-muted');
     const tbl = document.createElement('table'); tbl.className='data-table';
     const thead = document.createElement('thead');
-    thead.innerHTML = '<tr><th>Constituency</th><th>Valid (post Auto-QC)</th><th>Closed?</th>'
-      + '<th>Internal QCed</th><th>QC Coverage</th><th>QC Status</th></tr>';
-    tbl.appendChild(thead);
+    let head = '<tr><th>Constituency</th><th>Valid (post Auto-QC)</th>';
+    vendors.forEach(v => head += `<th>${v}</th>`);
+    head += '<th>Closed?</th><th>Active?</th><th>Reviewed</th><th>Rejected</th><th>Rejection Rate</th><th>Samples Left</th></tr>';
+    thead.innerHTML = head; tbl.appendChild(thead);
     const tb = document.createElement('tbody');
     rows.forEach(r => {
       const tr = document.createElement('tr');
@@ -603,12 +660,18 @@
       const closedCell = r.closed
         ? `<span style="color:${good};font-weight:600">Closed</span>`
         : `<span style="color:${muted}">Open</span>`;
-      let qcCell = `<span style="color:${muted}">—</span>`;
-      if (r.closed) qcCell = r.qcDone
-        ? `<span style="color:${good};font-weight:600">QCed</span>`
-        : `<span style="color:${warn};font-weight:600">Pending</span>`;
-      tr.innerHTML = `<td>${label}</td><td>${r.valid}</td><td>${closedCell}</td>`
-        + `<td>${r.qced}</td><td>${fmtPct(r.cov*100)}</td><td>${qcCell}</td>`;
+      const activeCell = r.active
+        ? `<span style="color:${good};font-weight:600">● Active</span>`
+        : `<span style="color:${muted}">—</span>`;
+      const rejCol = r.checked === 0 ? muted : (r.rate >= 0.2 ? crit : (r.rate > 0 ? warn : good));
+      const rateCell = r.checked === 0
+        ? `<span style="color:${muted}">—</span>`
+        : `<span style="color:${rejCol};font-weight:600">${fmtPct(r.rate*100)}</span>`;
+      let cells = `<td>${label}</td><td>${r.valid}</td>`;
+      vendors.forEach(v => cells += `<td>${r.vend[v]||0}</td>`);
+      cells += `<td>${closedCell}</td><td>${activeCell}</td><td>${r.checked}</td>`
+        + `<td>${r.rejected}</td><td>${rateCell}</td><td style="font-weight:600">${r.left}</td>`;
+      tr.innerHTML = cells;
       tb.appendChild(tr);
     });
     tbl.appendChild(tb); cardEl.appendChild(tbl); wrap.appendChild(cardEl);
@@ -644,7 +707,7 @@
     const s = document.createElement('select');
     cutDims().forEach(d => { const o=document.createElement('option'); o.value=d.key; o.textContent=d.label; s.appendChild(o); });
     s.value = cutBy;
-    s.addEventListener('change', () => { cutBy = s.value; const xc=document.getElementById('xtab-cards'); if(xc){ xc.innerHTML=''; drawCrosstabs(xc, applyFilters()); } });
+    s.addEventListener('change', () => { cutBy = s.value; const xc=document.getElementById('xtab-cards'); if(xc){ xc.innerHTML=''; drawCrosstabs(xc, analysisSet()); } });
     bar.appendChild(s); parent.appendChild(bar);
   }
 
@@ -685,11 +748,16 @@
   // the measures each cut is crossed against — Income added only if configured.
   function measures() {
     const c = CFG.columns;
-    const list = [
-      { title:'Vote Now', col:c.voteNow, colors:COLORS.party },
-      { title:'2022 AE',  col:c.ae2022,  colors:COLORS.party }
-    ];
+    const list = [ { title:'Vote Now', col:c.voteNow, colors:COLORS.party } ];
+    // 2022 AE: grouped by party (Manipur "CODE (Candidate)") or as-is (Goa).
+    list.push(CFG.ae2022GroupByParty
+      ? { title:'2022 AE (by party)', derive:(r)=>partyPrefix(r[c.ae2022]), colors:COLORS.ae22 }
+      : { title:'2022 AE', col:c.ae2022, colors:COLORS.party });
     if (c.ge2024) list.push({ title:'2024 GE', col:c.ge2024, colors:COLORS.party });
+    // Candidate-survey measures: shown at candidate-name level, colours built
+    // per-draw from whatever's in scope (filter to one AC to read cleanly).
+    if (c.mlaCandidate) list.push({ title:'MLA Candidate (preferred)', col:c.mlaCandidate, dynamic:true, maxSlots:9 });
+    if (c.incCandidate) list.push({ title:'INC Candidate (preferred MLA from INC)', col:c.incCandidate, dynamic:true, maxSlots:9 });
     list.push(
       { title:'Gender',   col:c.gender,  colors:COLORS.gender },
       { title:'Age Band', derive:(r)=>ageBand(r[c.age]), colors:COLORS.age },
@@ -717,12 +785,12 @@
     if (cutBy === 'AC') capped = capped.slice().sort((a,b)=>acNumber(a)-acNumber(b));
 
     // Tally one measure's segment counts over an arbitrary subset of rows.
-    function tally(subset, m) {
+    function tally(subset, m, colors) {
       const counts = {}; let total = 0;
       subset.forEach(r => {
         let seg = m.derive ? m.derive(r) : (r[m.col]||'').trim();
         if (!seg) return;
-        seg = m.colors.bucket ? m.colors.bucket(seg) : seg;
+        seg = colors.bucket ? colors.bucket(seg) : seg;
         counts[seg] = (counts[seg]||0)+1; total++;
       });
       return { total, counts };
@@ -730,31 +798,36 @@
 
     const capSet = new Set(capped);
     measures().forEach(m => {
+      // Dynamic measures (candidate columns) get a colour map built from the
+      // values actually in scope, so filtering to one AC shows its candidates.
+      const colors = m.dynamic
+        ? buildColorMap(rows.map(r => m.derive ? m.derive(r) : (r[m.col]||'')), m.maxSlots || 9)
+        : m.colors;
       const dataRows = [];
 
       // state-level overall row (all rows in scope, ignoring the cut)
-      const ov = tally(rows, m);
+      const ov = tally(rows, m, colors);
       if (ov.total > 0) dataRows.push({ label: `Overall — ${CFG.name}`, total: ov.total, counts: ov.counts, overall: true });
 
       // one row per cut category
       capped.forEach(cat => {
-        const t = tally(rows.filter(r => cutValue(r) === cat), m);
+        const t = tally(rows.filter(r => cutValue(r) === cat), m, colors);
         if (t.total > 0) dataRows.push({ label: cat, total: t.total, counts: t.counts });
       });
 
       // remaining cut categories folded into one "Other" row
       if (foldRest) {
-        const t = tally(rows.filter(r => { const cv = cutValue(r); return cv && !capSet.has(cv); }), m);
+        const t = tally(rows.filter(r => { const cv = cutValue(r); return cv && !capSet.has(cv); }), m, colors);
         if (t.total > 0) dataRows.push({ label: `Other (${cats.length-capped.length})`, total: t.total, counts: t.counts });
       }
 
       const body = card(parent, m.title, `by ${cutDims().find(d=>d.key===cutBy).label}`);
-      const segOrder = m.colors.order.slice();
-      const isParty = m.colors === COLORS.party;
+      const segOrder = colors.order.slice();
+      const isParty = (colors === COLORS.party || colors === COLORS.ae22);
       const nameFor = isParty ? shortPartyLabel : (s)=>s;
-      legendRow(body, segOrder.map(s=>({name:nameFor(s),color:m.colors.colorFor(s)})));
+      legendRow(body, segOrder.map(s=>({name:nameFor(s),color:colors.colorFor(s)})));
       const chartDiv = document.createElement('div'); body.appendChild(chartDiv); // own container so legend isn't wiped
-      stacked100(chartDiv, { rows: dataRows, segOrder, colorFor: (s)=>m.colors.colorFor(s),
+      stacked100(chartDiv, { rows: dataRows, segOrder, colorFor: (s)=>colors.colorFor(s),
                              segLabelFn: isParty ? shortPartyLabel : null });
     });
   }
