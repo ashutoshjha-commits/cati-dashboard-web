@@ -149,6 +149,15 @@
     const i = s.indexOf(' (');
     return i > 0 ? s.slice(0, i).trim() : s;
   }
+  // Text inside the outer parentheses of "CODE (Candidate Name)".
+  function parenInner(s) {
+    s = String(s || '');
+    const i = s.indexOf('('), j = s.lastIndexOf(')');
+    return (i >= 0 && j > i) ? s.slice(i+1, j).trim() : '';
+  }
+  // A non-candidate answer (undecided / party-only / dropped call / none).
+  const GENERIC_ANSWER_RE = /(will vote|my choice|call disconnect|won'?t vote|no one|any\s*one|anyone|nota|don'?t know|not decided|not known|no idea|undecided|refuse|didn'?t vote|other partie|none|^no$|^0$)/i;
+  function isGenericAnswer(s) { s = String(s||'').trim(); return !s || GENERIC_ANSWER_RE.test(s); }
   function buildPartyColorMap(values) {
     const cnt = {};
     values.forEach(v => { const k=(v||'').trim(); if (k) cnt[k]=(cnt[k]||0)+1; });
@@ -317,7 +326,7 @@
   // set: each row ranks its own answers, top `maxSeg` get palette colours by
   // rank, the rest fold to "Other". Names are written on wide bars; the tooltip
   // always carries the full name. No shared legend (colours are per-row).
-  function stackedLocal(container, { rows, maxSeg }) {
+  function stackedLocal(container, { rows, maxSeg, colorOf }) {
     maxSeg = maxSeg || 6;
     const rowH = 34, width = VBW, marginL = 150, marginR = 44;
     const plotW = width - marginL - marginR;
@@ -328,10 +337,18 @@
       const y = i * rowH;
       const lbl = el('text', { x: marginL-10, y: y+rowH/2+4, 'text-anchor':'end', class:'row-label' });
       lbl.textContent = truncate(r.label, 22); svg.appendChild(lbl);
-      const top = r.items.slice(0, maxSeg);
-      const otherN = r.items.slice(maxSeg).reduce((s,e)=>s+e.count, 0);
-      const segs = top.map((it, idx) => ({ name: it.name, count: it.count, color: seriesColor(idx) }));
-      if (otherN > 0) segs.push({ name: 'Other', count: otherN, color: muted });
+      // colorOf mode (party colouring): keep every candidate in the given order,
+      // coloured by party — same-colour candidates form one contiguous block.
+      // Otherwise: top `maxSeg` by rank get palette colours, the rest fold to Other.
+      let segs;
+      if (colorOf) {
+        segs = r.items.map(it => ({ name: it.name, count: it.count, color: colorOf(it.name) }));
+      } else {
+        const top = r.items.slice(0, maxSeg);
+        const otherN = r.items.slice(maxSeg).reduce((s,e)=>s+e.count, 0);
+        segs = top.map((it, idx) => ({ name: it.name, count: it.count, color: seriesColor(idx) }));
+        if (otherN > 0) segs.push({ name: 'Other', count: otherN, color: muted });
+      }
       let x = marginL;
       segs.forEach(sg => {
         const p = pct(sg.count, r.total); const w = (p/100) * plotW;
@@ -420,12 +437,34 @@
     COLORS.party = buildPartyColorMap(partyVals);
     // Manipur candidate survey: 2022 AE is "CODE (Candidate)" → group by party.
     COLORS.ae22 = buildPartyColorMap(ALL.map(r => partyPrefix(r[c.ae2022])));
+    // Set of Congress (INC) candidate names, so the MLA-candidate chart can be
+    // coloured by party (INC = blue, anyone else named = saffron). Sourced from
+    // the "preferred MLA from INC" column plus the CONGRESS/INC entries in 2022 AE.
+    const congress = new Set();
+    const addName = n => { n = String(n||'').trim(); if (n && !isGenericAnswer(n)) congress.add(n); };
+    if (c.incCandidate) ALL.forEach(r => addName(r[c.incCandidate]));
+    ALL.forEach(r => { const ae=(r[c.ae2022]||'').trim(); const p=partyPrefix(ae).toUpperCase(); if (p.includes('INC')||p.includes('CONGRESS')) addName(parenInner(ae)); });
+    COLORS.congress = congress;
     COLORS.gender = buildColorMap(ALL.map(r=>r[c.gender]), 4);
     COLORS.caste = buildColorMap(ALL.map(r=>r[c.caste]), 7);
     COLORS.age = { map: Object.fromEntries(AGE_ORDER.map((b,i)=>[b,seriesColor(i)])), order: AGE_ORDER, hasOther:false,
                    colorFor:(k)=>COLORS.age.map[k]||otherColor(), bucket:(k)=>k };
     COLORS.income = { map: Object.fromEntries(INCOME_ORDER.map((b,i)=>[b,seriesColor(i)])), order: INCOME_ORDER, hasOther:false,
                    colorFor:(k)=>COLORS.income.map[k]||otherColor(), bucket:(k)=>k };
+  }
+
+  // Candidate → party colour: INC (blue) if a known Congress candidate, grey for
+  // non-answers, saffron for any other named candidate. Class order for sorting:
+  // 0 = Congress, 1 = other named, 2 = generic (drawn last).
+  function candidateColor(name) {
+    const n = String(name||'').trim();
+    if (isGenericAnswer(n)) return otherColor();
+    return (COLORS.congress && COLORS.congress.has(n)) ? PARTY_PIN_CODES['INC'] : PARTY_PIN_CODES['BJP'];
+  }
+  function candidateClass(name) {
+    const n = String(name||'').trim();
+    if (isGenericAnswer(n)) return 2;
+    return (COLORS.congress && COLORS.congress.has(n)) ? 0 : 1;
   }
 
   // filter state
@@ -795,7 +834,7 @@
     if (c.ge2024) list.push({ title:'2024 GE', col:c.ge2024, colors:COLORS.party });
     // Candidate-survey measures: shown at candidate-name level, colours built
     // per-draw from whatever's in scope (filter to one AC to read cleanly).
-    if (c.mlaCandidate) list.push({ title:'MLA Candidate (preferred)', col:c.mlaCandidate, dynamic:true, maxSlots:9 });
+    if (c.mlaCandidate) list.push({ title:'MLA Candidate (preferred) — by party', col:c.mlaCandidate, dynamic:true, congressColor:true });
     if (c.incCandidate) list.push({ title:'INC Candidate (preferred MLA from INC)', col:c.incCandidate, dynamic:true, maxSlots:9 });
     list.push(
       { title:'Gender',   col:c.gender,  colors:COLORS.gender },
@@ -852,14 +891,25 @@
       // colour each row by its own top candidates (no shared palette / legend).
       if (m.dynamic) {
         const body = card(parent, m.title, `by ${cutLabel}`);
-        const note = document.createElement('div'); note.className='legend';
-        note.innerHTML = `<span class="item" style="color:var(--text-muted)">Each row is coloured by that ${cutLabel.toLowerCase()}’s own top candidates — hover a bar for the name &amp; count.</span>`;
-        body.appendChild(note);
+        if (m.congressColor) {
+          legendRow(body, [
+            { name:'Congress (INC) candidate', color:PARTY_PIN_CODES['INC'] },
+            { name:'Non-Congress candidate', color:PARTY_PIN_CODES['BJP'] },
+            { name:'Undecided / no candidate', color:otherColor() }
+          ]);
+        } else {
+          const note = document.createElement('div'); note.className='legend';
+          note.innerHTML = `<span class="item" style="color:var(--text-muted)">Each row is coloured by that ${cutLabel.toLowerCase()}’s own top candidates — hover a bar for the name &amp; count.</span>`;
+          body.appendChild(note);
+        }
+        const order = (items) => m.congressColor
+          ? items.slice().sort((a,b)=> candidateClass(a.name)-candidateClass(b.name) || b.count-a.count)
+          : items;
         const dRows = [];
-        capped.forEach(cat => { const t = candItems(rows.filter(r=>cutValue(r)===cat), m); if (t.total>0) dRows.push({ label:cat, items:t.items, total:t.total }); });
-        if (foldRest) { const t = candItems(rows.filter(r=>{const cv=cutValue(r);return cv&&!capSet.has(cv);}), m); if (t.total>0) dRows.push({ label:`Other (${cats.length-capped.length})`, items:t.items, total:t.total }); }
+        capped.forEach(cat => { const t = candItems(rows.filter(r=>cutValue(r)===cat), m); if (t.total>0) dRows.push({ label:cat, items:order(t.items), total:t.total }); });
+        if (foldRest) { const t = candItems(rows.filter(r=>{const cv=cutValue(r);return cv&&!capSet.has(cv);}), m); if (t.total>0) dRows.push({ label:`Other (${cats.length-capped.length})`, items:order(t.items), total:t.total }); }
         const chartDiv = document.createElement('div'); body.appendChild(chartDiv);
-        if (dRows.length) stackedLocal(chartDiv, { rows: dRows, maxSeg: 6 });
+        if (dRows.length) stackedLocal(chartDiv, { rows: dRows, maxSeg: 6, colorOf: m.congressColor ? candidateColor : null });
         else { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No data in scope.'; chartDiv.appendChild(n); }
         return;
       }
