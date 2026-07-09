@@ -312,6 +312,45 @@
     container.innerHTML = ''; container.appendChild(svg);
   }
 
+  // ---- per-row 100% stacked bars, each row coloured by ITS OWN top segments ----
+  // For candidate questions where every constituency has a different candidate
+  // set: each row ranks its own answers, top `maxSeg` get palette colours by
+  // rank, the rest fold to "Other". Names are written on wide bars; the tooltip
+  // always carries the full name. No shared legend (colours are per-row).
+  function stackedLocal(container, { rows, maxSeg }) {
+    maxSeg = maxSeg || 6;
+    const rowH = 34, width = VBW, marginL = 150, marginR = 44;
+    const plotW = width - marginL - marginR;
+    const h = rows.length * rowH + 6;
+    const svg = el('svg', { class:'chart-svg', width:'100%', height:h, viewBox:`0 0 ${width} ${h}`, preserveAspectRatio:'xMinYMin meet' });
+    const muted = otherColor();
+    rows.forEach((r, i) => {
+      const y = i * rowH;
+      const lbl = el('text', { x: marginL-10, y: y+rowH/2+4, 'text-anchor':'end', class:'row-label' });
+      lbl.textContent = truncate(r.label, 22); svg.appendChild(lbl);
+      const top = r.items.slice(0, maxSeg);
+      const otherN = r.items.slice(maxSeg).reduce((s,e)=>s+e.count, 0);
+      const segs = top.map((it, idx) => ({ name: it.name, count: it.count, color: seriesColor(idx) }));
+      if (otherN > 0) segs.push({ name: 'Other', count: otherN, color: muted });
+      let x = marginL;
+      segs.forEach(sg => {
+        const p = pct(sg.count, r.total); const w = (p/100) * plotW;
+        const rect = el('rect', { x, y: y+6, width: Math.max(w-2,0), height: rowH-14, fill: sg.color, rx:2, class:'bar' });
+        rect.addEventListener('mousemove', e => showTooltip(e, `${r.label} — ${sg.name}`, [['Share', fmtPct(p)], ['Count', sg.count], ['Row total', r.total]]));
+        rect.addEventListener('mouseleave', hideTooltip);
+        svg.appendChild(rect);
+        if (w > 30) {
+          const txt = (w > 78) ? `${truncate(sg.name, Math.max(4, Math.floor(w/7)))} ${Math.round(p)}%` : Math.round(p)+'%';
+          const t = el('text', { x: x+w/2, y: y+rowH/2+4, 'text-anchor':'middle', class:'seg-pct' }); t.textContent = txt; svg.appendChild(t);
+        }
+        x += w;
+      });
+      const tot = el('text', { x: width-marginR+6, y: y+rowH/2+4, class:'seg-total' });
+      tot.textContent = 'n=' + r.total; svg.appendChild(tot);
+    });
+    container.innerHTML = ''; container.appendChild(svg);
+  }
+
   // ---- vertical stacked/grouped bars (operational: daily volume, vendor) ----
   function truncate(s, max) { max = max||14; return s.length>max ? s.slice(0,max-1)+'…' : s; }
   function vbars(container, { categories, series, mode }) {
@@ -775,7 +814,8 @@
     const cutCnt = {};
     rows.forEach(r => { const k = cutValue(r); if (k) cutCnt[k]=(cutCnt[k]||0)+1; });
     let cats = Object.entries(cutCnt).sort((a,b)=>b[1]-a[1]).map(e=>e[0]);
-    const CAP = 12;
+    // show every constituency when cutting by AC (small count, each is meaningful)
+    const CAP = (cutBy === 'AC') ? 40 : 12;
     let capped = cats.slice(0, CAP);
     const foldRest = cats.length > CAP;
     // Age/Income bands & Date read better in natural order; AC by its number
@@ -797,12 +837,34 @@
     }
 
     const capSet = new Set(capped);
+    const cutLabel = cutDims().find(d=>d.key===cutBy).label;
+
+    // Candidate answers over a subset, ranked — each row keeps its OWN set.
+    function candItems(subset, m) {
+      const cnt = {}; let total = 0;
+      subset.forEach(r => { const k=(r[m.col]||'').trim(); if(!k) return; cnt[k]=(cnt[k]||0)+1; total++; });
+      const items = Object.entries(cnt).map(([name,count])=>({name,count})).sort((a,b)=>b.count-a.count);
+      return { items, total };
+    }
+
     measures().forEach(m => {
-      // Dynamic measures (candidate columns) get a colour map built from the
-      // values actually in scope, so filtering to one AC shows its candidates.
-      const colors = m.dynamic
-        ? buildColorMap(rows.map(r => m.derive ? m.derive(r) : (r[m.col]||'')), m.maxSlots || 9)
-        : m.colors;
+      // Candidate measures: every cut category has a different candidate set, so
+      // colour each row by its own top candidates (no shared palette / legend).
+      if (m.dynamic) {
+        const body = card(parent, m.title, `by ${cutLabel}`);
+        const note = document.createElement('div'); note.className='legend';
+        note.innerHTML = `<span class="item" style="color:var(--text-muted)">Each row is coloured by that ${cutLabel.toLowerCase()}’s own top candidates — hover a bar for the name &amp; count.</span>`;
+        body.appendChild(note);
+        const dRows = [];
+        capped.forEach(cat => { const t = candItems(rows.filter(r=>cutValue(r)===cat), m); if (t.total>0) dRows.push({ label:cat, items:t.items, total:t.total }); });
+        if (foldRest) { const t = candItems(rows.filter(r=>{const cv=cutValue(r);return cv&&!capSet.has(cv);}), m); if (t.total>0) dRows.push({ label:`Other (${cats.length-capped.length})`, items:t.items, total:t.total }); }
+        const chartDiv = document.createElement('div'); body.appendChild(chartDiv);
+        if (dRows.length) stackedLocal(chartDiv, { rows: dRows, maxSeg: 6 });
+        else { const n=document.createElement('p'); n.className='empty-note'; n.textContent='No data in scope.'; chartDiv.appendChild(n); }
+        return;
+      }
+
+      const colors = m.colors;
       const dataRows = [];
 
       // state-level overall row (all rows in scope, ignoring the cut)
@@ -821,7 +883,7 @@
         if (t.total > 0) dataRows.push({ label: `Other (${cats.length-capped.length})`, total: t.total, counts: t.counts });
       }
 
-      const body = card(parent, m.title, `by ${cutDims().find(d=>d.key===cutBy).label}`);
+      const body = card(parent, m.title, `by ${cutLabel}`);
       const segOrder = colors.order.slice();
       const isParty = (colors === COLORS.party || colors === COLORS.ae22);
       const nameFor = isParty ? shortPartyLabel : (s)=>s;

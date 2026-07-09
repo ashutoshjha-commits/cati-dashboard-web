@@ -6,7 +6,7 @@ window.CATI_PROJECT = {
   name: 'Manipur',
   csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRFpNeye0PdwJQOwosiouaSFIKzLxlTs060I8dc1sseKPUNmwvukVd8meKXhuNJpydI_9vDKqd8Fa9r/pub?gid=1360204096&single=true&output=csv',
 
-  target: 1200,
+  target: 18000,
   startDate: '2026-07-04',   // yyyy-mm-dd
   deadline: '2026-07-20',    // yyyy-mm-dd
 
