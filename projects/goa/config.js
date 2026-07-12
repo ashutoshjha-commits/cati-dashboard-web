@@ -4,7 +4,7 @@
 // The engine adapts automatically from the column map below.
 window.CATI_PROJECT = {
   name: 'Goa',
-  csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSxDHq7tyNuJ5j29PLODgV43VmkPXhLCx6Lv5yaChJkphbSZx5TTVfHqLwOixewBNSjZmcb6jptA6ed/pub?gid=1605719300&single=true&output=csv',
+  csvUrl: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSxDHq7tyNuJ5j29PLODgV43VmkPXhLCx6Lv5yaChJkphbSZx5TTVfHqLwOixewBNSjZmcb6jptA6ed/pub?gid=827130388&single=true&output=csv',
 
   target: 2400,          // overall (40 ACs × 60)
   perAcTarget: 60,       // uniform per-constituency target → drives the AC Target Tracker
