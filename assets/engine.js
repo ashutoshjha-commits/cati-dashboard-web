@@ -69,6 +69,20 @@
   // A "real" constituency = starts with a number (excludes Others / Call Disconnected / blank).
   function isRealAC(label) { return /^\d/.test(String(label).trim()); }
 
+  // Canonicalize an AC label so the same constituency always groups under one
+  // key, regardless of how it was typed in the sheet: "1 Mandrem", "1.Mandrem",
+  // "31  Margao" (double space), and "2.(Pernem (SC)" (stray leading paren typo)
+  // all collapse to the same key. Without this, per-AC counts/targets silently
+  // split across near-duplicate labels. Values with no leading number (Manipur's
+  // plain "12", or "No"/"Others"/"Call Disconnected") pass through unchanged.
+  function acKey(raw) {
+    const s = String(raw || '').trim();
+    const m = s.match(/^(\d+)\s*[.\s]*\s*(.*)$/);
+    if (!m) return s;
+    const name = m[2].replace(/^\(+/, '').replace(/\s{2,}/g, ' ').trim();
+    return name ? `${m[1]}.${name}` : m[1];
+  }
+
   function el(tag, attrs) {
     const e = document.createElementNS(svgNS, tag);
     for (const k in attrs) e.setAttribute(k, attrs[k]);
@@ -475,7 +489,7 @@
     return ALL.filter(r => {
       if (F.validOnly && r[c.finalCall] !== CFG.validValue) return false;
       if (F.Vendor && (r[c.vendor]||'').trim() !== F.Vendor) return false;
-      if (F.AC && (r[c.ac]||'').trim() !== F.AC) return false;
+      if (F.AC && acKey(r[c.ac]) !== F.AC) return false;
       if (F.Form && (r[c.formVersion]||'').trim() !== F.Form) return false;
       if (F.Date) { const d = parseDMY(r[c.timestamp]); if (!d || isoDate(d) !== F.Date) return false; }
       return true;
@@ -507,7 +521,7 @@
     }
 
     sel('Vendor','Vendor', distinct(ALL,c.vendor).map(v=>({value:v,text:v})));
-    sel('Constituency','AC', distinct(ALL,c.ac).filter(v=>v.toUpperCase()!=='NO')
+    sel('Constituency','AC', Array.from(new Set(ALL.map(r=>acKey(r[c.ac])).filter(v=>v && v.toUpperCase()!=='NO')))
         .sort((a,b)=>acNumber(a)-acNumber(b)).map(v=>({value:v,text:v})));
     if (c.formVersion) sel('Form Version','Form', distinct(ALL,c.formVersion).map(v=>({value:v,text:v})));
     const dates = Array.from(new Set(ALL.map(r=>{const d=parseDMY(r[c.timestamp]);return d?isoDate(d):null;}).filter(Boolean))).sort();
@@ -580,7 +594,7 @@
       // valid samples per real constituency, respecting Vendor/AC/Date filters but always counting VALID toward target
       const validRaw = applyFiltersRaw().filter(r => r[c.finalCall] === CFG.validValue);
       const acCnt = {};
-      validRaw.forEach(r => { const a=(r[c.ac]||'').trim(); if (isRealAC(a)) acCnt[a]=(acCnt[a]||0)+1; });
+      validRaw.forEach(r => { const a=acKey(r[c.ac]); if (isRealAC(a)) acCnt[a]=(acCnt[a]||0)+1; });
       const trackerRows = Object.entries(acCnt).map(([ac,done])=>({ac,done}))
         .sort((a,b)=> (b.done/tgt)-(a.done/tgt) || acNumber(a.ac)-acNumber(b.ac));
       const reached = trackerRows.filter(r=>r.done>=tgt).length;
@@ -630,7 +644,7 @@
     const c = CFG.columns;
     return ALL.filter(r => {
       if (F.Vendor && (r[c.vendor]||'').trim() !== F.Vendor) return false;
-      if (F.AC && (r[c.ac]||'').trim() !== F.AC) return false;
+      if (F.AC && acKey(r[c.ac]) !== F.AC) return false;
       if (F.Form && (r[c.formVersion]||'').trim() !== F.Form) return false;
       if (F.Date) { const d = parseDMY(r[c.timestamp]); if (!d || isoDate(d) !== F.Date) return false; }
       return true;
@@ -678,7 +692,7 @@
 
     const acc = {};
     validRaw.forEach(r => {
-      const a = (r[c.ac] || '').trim();
+      const a = acKey(r[c.ac]);
       if (!isRealAC(a)) return;
       if (!acc[a]) acc[a] = { valid:0, checked:0, rejected:0, vend:{}, last:0, name: nameCol ? (r[nameCol]||'').trim() : '' };
       acc[a].valid++;
@@ -760,7 +774,7 @@
   function compositionChart(parent, title, rows, col, bandFn, maxSlots, dropNoAC) {
     const cnt = {};
     rows.forEach(r => {
-      let k = bandFn ? bandFn(r[CFG.columns.age]) : (r[col]||'').trim();
+      let k = bandFn ? bandFn(r[CFG.columns.age]) : (col===CFG.columns.ac ? acKey(r[col]) : (r[col]||'').trim());
       if (!k) return;
       if (dropNoAC && String(k).toUpperCase()==='NO') return;
       cnt[k] = (cnt[k]||0)+1;
@@ -812,7 +826,7 @@
     switch (cutBy) {
       case 'Vendor': return (r[c.vendor]||'').trim();
       case 'Agent':  return (r[c.agentId]||'').trim();
-      case 'AC':     { const v=(r[c.ac]||'').trim(); return v.toUpperCase()==='NO'?'':v; }
+      case 'AC':     { const v=acKey(r[c.ac]); return v.toUpperCase()==='NO'?'':v; }
       case 'Gender': return (r[c.gender]||'').trim();
       case 'AgeBand':return ageBand(r[c.age]) || '';
       case 'Caste':  return (r[c.caste]||'').trim();
