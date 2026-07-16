@@ -28,6 +28,7 @@
     col: {
       vendor:'Vendor', ac:'AC', acName:'AC Name', timestamp:'Timestamp', agentId:'Agent ID',
       gender:'Gender', age:'Age', voteNow:'Vote Now', ae2022:'2022 AE',
+      mlaCandidate:'MLA Candidate', incCandidate:'INC Candidate',
       finalCall:'Final Call', imVerdict:'IM Final Call (Internal QC Verdict)'
     },
     validValue:'Valid', internalReject:'Invalid',
@@ -126,6 +127,14 @@
   function surveyAge(rows){ const cnt={}; let base=0; rows.forEach(r=>{ const g=ageGroup(r[CFG.col.age]); if(!g) return; cnt[g]=(cnt[g]||0)+1; base++; }); return { cnt, base }; }
   function surveyCand(rows){ const cnt={}; let base=0; rows.forEach(r=>{ const c=candOf(r[CFG.col.ae2022]); const p=normParty(r[CFG.col.ae2022]);
     if(p.nonvote||!c) return; cnt[c]=cnt[c]||{n:0,party:p.code}; cnt[c].n++; base++; }); return { cnt, base }; }
+
+  // free-text candidate-preference columns (MLA Candidate / INC Candidate): a
+  // non-answer (undecided / none / dropped call / party-only) is skipped.
+  const GENERIC = /^\s*$|call\s*disconnect|no\s*one|any\s*one|anyone|not\s*decided|undecided|don'?t\s*know|no\s*idea|refus|^nota$|^none$|^no$|^na$|will\s*vote|my\s*choice|not\s*sure|can'?t\s*say|no\s*answer|will\s*decide|right\s*time/i;
+  function choiceDist(rows, col, topN){ const cnt={}; let base=0;
+    rows.forEach(r=>{ const v=String(r[col]||'').trim(); if(GENERIC.test(v)) return; cnt[v]=(cnt[v]||0)+1; base++; });
+    return Object.entries(cnt).map(([k,n])=>({key:k,label:k,share:pct(n,base),n})).sort((a,b)=>b.share-a.share)
+      .slice(0,topN||10).map((r,i)=>({ ...r, color:seriesVar(i) })); }
 
   // ---- actual distributions (reference) ----
   function actualParty(list){ const cnt={}; let total=0;
@@ -299,6 +308,16 @@
       { title:'Survey recall', dist: candDist(surveyCand(validRowsMany(list))) },
       { title:'Actual 2022 result', dist: candActualDist(list) });
 
+    // Candidate Choice (current preferred MLA) — survey only, no 2022 benchmark
+    section(body,'Candidate Choice — preferred MLA (current)',
+      'Who respondents name as their preferred MLA candidate now (valid samples; undecided/none excluded). A current preference, so there is no 2022 benchmark — read per constituency.');
+    singleCard(body, choiceDist(validRowsMany(list), CFG.col.mlaCandidate, 10));
+
+    // Preferred INC candidate — survey only
+    section(body,'Preferred INC Candidate (current)',
+      'Preferred candidate from INC named in the survey (valid samples; undecided/none excluded).');
+    singleCard(body, choiceDist(validRowsMany(list), CFG.col.incCandidate, 10));
+
     // Gender
     section(body,'Gender — survey vs census','');
     comparePair(body,
@@ -322,6 +341,15 @@
   function candDist(sc){ return Object.entries(sc.cnt).map(([name,o])=>({key:name,label:name,share:pct(o.n,sc.base),n:o.n,color:partyColor(o.party)})).sort((a,b)=>b.share-a.share).slice(0,8); }
   function candActualDist(list){ const a=actualCand(list); return a.rows.slice(0,8).map(c=>({key:c.name,label:c.name,share:pct(c.votes,a.total),n:c.votes,color:partyColor(c.party)})); }
   function seriesVar(i){ return `var(--series-${(i%8)+1})`; }
+
+  // single full-width chart card (same card style as the side-by-side ones) —
+  // for survey-only measures that have no actual benchmark.
+  function singleCard(body, dist){
+    const wrap=el('div','cards'); const cardEl=el('div','card'); cardEl.style.gridColumn='1 / -1';
+    if(!dist.length){ const p=el('p','empty-note'); p.textContent='No named preference in scope.'; cardEl.appendChild(p); }
+    else { const plot=el('div'); cardEl.appendChild(plot); hbars(plot, dist); }
+    wrap.appendChild(cardEl); body.appendChild(wrap);
+  }
 
   // side-by-side pair, "Other" expandable
   function comparePair(body,left,right,fixedOrder){
