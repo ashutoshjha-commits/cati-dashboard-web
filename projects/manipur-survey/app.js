@@ -64,7 +64,9 @@
     NPP:'#d7b500', NPF:'#8250c4', 'RPI(A)':'#c0448f', NCP:'#3fa34d', CPI:'#d64550',
     SHS:'#e07b39', 'LJP(RV)':'#5b8def', IND:'#9aa0a6', OTHER:'#b9bcc2' };
   function partyColor(code){ return PARTY_COLOR[code] || '#b9bcc2'; }
-  function candOf(raw){ const s=String(raw||''); const i=s.indexOf('('),j=s.lastIndexOf(')'); return (i>=0&&j>i)?s.slice(i+1,j).trim():''; }
+  // candidate name = text in the LAST bracket group, so party codes written with
+  // brackets ("JD(U) (Elangbam Dwijamani)", "RPI(A) (…)") don't get mis-parsed.
+  function candOf(raw){ const s=String(raw||''); const i=s.lastIndexOf('('),j=s.lastIndexOf(')'); return (i>=0&&j>i)?s.slice(i+1,j).trim():''; }
 
   // ------------------------------------------------------------- age grouping
   const AGE_ORDER = ['18-24','25-34','35-44','45-59','60+'];
@@ -136,7 +138,9 @@
       labs.forEach((lb,i)=>{ const g=apiBandToGroup(lb); if(!g) return; acc[g]=(acc[g]||0)+(props[i]||0)*pop; }); w+=pop; });
     const share={}; AGE_ORDER.forEach(g=>{ share[g]= w? (acc[g]||0)/w : 0; });   // already a percentage
     return { share }; }
-  function actualCand(list){ const rows=[]; list.forEach(a=>{ (REF[a].results2022||[]).forEach(c=>rows.push({name:c.name,party:normParty(c.party).code||'OTHER',votes:c.votes||0})); });
+  // NOTA is a ballot option, not a candidate — exclude it from the candidate chart.
+  function actualCand(list){ const rows=[]; list.forEach(a=>{ (REF[a].results2022||[]).forEach(c=>{ const code=normParty(c.party).code||'OTHER';
+    if(code==='NOTA') return; rows.push({name:c.name,party:code,votes:c.votes||0}); }); });
     const total=rows.reduce((s,c)=>s+c.votes,0); return { rows:rows.sort((a,b)=>b.votes-a.votes), total }; }
 
   // ------------------------------------------------- deviation summary (neutral)
