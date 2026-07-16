@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Candidate Survey Deep Dive — Manipur</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><text y='13' font-size='13'>📊</text></svg>">
+<link rel="stylesheet" href="../../assets/style.css">
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<style>
+  /* ---- tabs ---- */
+  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--border); margin:18px 0 10px; flex-wrap:wrap; }
+  .tab { padding:9px 18px; border:none; background:none; cursor:pointer; font-size:14px; font-weight:600;
+         color:var(--text-secondary); border-bottom:2px solid transparent; margin-bottom:-1px; }
+  .tab:hover { color:var(--text-primary); }
+  .tab.active { color:var(--text-primary); border-bottom-color:var(--series-1); }
+
+  /* ---- scope bar ---- */
+  .scopebar { display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin:8px 0 4px; }
+  .scopebar .field { display:flex; flex-direction:column; gap:3px; }
+  .scopebar label { font-size:11px; color:var(--text-muted); text-transform:uppercase; letter-spacing:.04em; }
+  .scopebar select { padding:7px 11px; border:1px solid var(--border); border-radius:7px;
+                     background:var(--surface-1); color:var(--text-primary); font-size:13px; min-width:260px; }
+
+  /* ---- side-by-side compare ---- */
+  .cmp-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  @media (max-width:640px){ .cmp-grid { grid-template-columns:1fr; } }
+  .cmp-side h4 { margin:0 0 6px; font-size:12px; font-weight:700; letter-spacing:.03em; text-transform:uppercase; color:var(--text-secondary); }
+  .cmp-side.survey h4 { color:var(--series-1); }
+  .cmp-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+  .link-btn { background:none; border:none; color:var(--series-1); cursor:pointer; font-size:12px; font-weight:600; padding:0; }
+
+  /* ---- deviation table emphasis (neutral, formal) ---- */
+  .dev-big { font-weight:700; }
+  .num { text-align:right; font-variant-numeric:tabular-nums; }
+  .hint { font-size:12px; color:var(--text-muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div>
+      <h1>Candidate Survey Deep Dive</h1>
+      <div class="meta"><a href="../../">&larr; all projects</a> · Manipur — survey benchmarked against 2022 result &amp; census</div>
+    </div>
+  </div>
+  <div id="app"><p class="footer-note">Loading survey sample and benchmark data…</p></div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

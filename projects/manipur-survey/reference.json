@@ -1,0 +1,5252 @@
+{
+ "1": {
+  "no": 1,
+  "acid": 2207,
+  "name": "Khundrakpam (GEN)",
+  "results2022": [
+   {
+    "name": "Thokchom Lokeshwar Singh",
+    "party": "INC",
+    "votes": 12211,
+    "rank": 1
+   },
+   {
+    "name": "Thangjam Mohendro Singh",
+    "party": "BJP",
+    "votes": 11996,
+    "rank": 2
+   },
+   {
+    "name": "Elangbam Sovid Singh",
+    "party": "RPI(A)",
+    "votes": 497,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 167,
+    "rank": 4
+   },
+   {
+    "name": "Thangjam Shyam Singh",
+    "party": "SHS",
+    "votes": 40,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 24911,
+  "demog": {
+   "sex": {
+    "f": 23807,
+    "m": 24037
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8366,
+    13.2138,
+    13.5837,
+    12.1269,
+    10.7516,
+    9.8758,
+    8.5967,
+    7.7857,
+    6.1408,
+    4.2555,
+    3.1247,
+    2.2866,
+    1.762,
+    0.8611,
+    0.4389,
+    0.3595
+   ],
+   "region": {
+    "Rural": 47844,
+    "Urban": 0
+   },
+   "totalPop": 47844
+  }
+ },
+ "2": {
+  "no": 2,
+  "acid": 2208,
+  "name": "Heingang (GEN)",
+  "results2022": [
+   {
+    "name": "NONGTHOMBAM BIREN SINGH",
+    "party": "BJP",
+    "votes": 24814,
+    "rank": 1
+   },
+   {
+    "name": "PANGEIJAM SARATCHANDRA SINGH",
+    "party": "INC",
+    "votes": 6543,
+    "rank": 2
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 239,
+    "rank": 3
+   }
+  ],
+  "totalVotes2022": 31596,
+  "demog": {
+   "sex": {
+    "f": 5168,
+    "m": 5219
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.833,
+    13.2184,
+    13.5843,
+    12.1305,
+    10.7442,
+    9.8777,
+    8.5877,
+    7.7886,
+    6.1423,
+    4.2553,
+    3.1289,
+    2.2817,
+    1.7618,
+    0.8665,
+    0.4429,
+    0.3562
+   ],
+   "region": {
+    "Rural": 10387,
+    "Urban": 0
+   },
+   "totalPop": 10387
+  }
+ },
+ "3": {
+  "no": 3,
+  "acid": 2209,
+  "name": "Khurai (GEN)",
+  "results2022": [
+   {
+    "name": "LEISHANGTHEM SUSINDRO MEITEI",
+    "party": "BJP",
+    "votes": 11131,
+    "rank": 1
+   },
+   {
+    "name": "LAITONJAM JAYANANDA SINGH",
+    "party": "NPP",
+    "votes": 8894,
+    "rank": 2
+   },
+   {
+    "name": "KHAGOKPAM KHAMBA SINGH",
+    "party": "RPI(A)",
+    "votes": 6792,
+    "rank": 3
+   },
+   {
+    "name": "TOIJAM LOKENDRO SINGH",
+    "party": "JD(U)",
+    "votes": 2922,
+    "rank": 4
+   },
+   {
+    "name": "KHURAIJAM RATANKUMAR SINGH",
+    "party": "NCP",
+    "votes": 2461,
+    "rank": 5
+   },
+   {
+    "name": "HEISNAM SUBHAS SINGH",
+    "party": "Lok Janshakti Party(Ram Vilas)",
+    "votes": 385,
+    "rank": 6
+   },
+   {
+    "name": "R.K. AMUSANA SINGH",
+    "party": "CPI",
+    "votes": 356,
+    "rank": 7
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 169,
+    "rank": 8
+   }
+  ],
+  "totalVotes2022": 33110,
+  "demog": {
+   "sex": {
+    "f": 3693,
+    "m": 3730
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8363,
+    13.2157,
+    13.5794,
+    12.1245,
+    10.7638,
+    9.8747,
+    8.5949,
+    7.7866,
+    6.1431,
+    4.257,
+    3.1254,
+    2.2767,
+    1.7513,
+    0.8622,
+    0.4446,
+    0.3637
+   ],
+   "region": {
+    "Rural": 7423,
+    "Urban": 0
+   },
+   "totalPop": 7423
+  }
+ },
+ "4": {
+  "no": 4,
+  "acid": 2210,
+  "name": "Kshetrigao",
+  "results2022": [
+   {
+    "name": "Sheikh Noorul Hassan",
+    "party": "NPP",
+    "votes": 13118,
+    "rank": 1
+   },
+   {
+    "name": "Nahakpam Indrajit Singh",
+    "party": "BJP",
+    "votes": 12376,
+    "rank": 2
+   },
+   {
+    "name": "Wahengbam Rojit Singh @ Bullet",
+    "party": "JD(U)",
+    "votes": 5437,
+    "rank": 3
+   },
+   {
+    "name": "Mohammed Amin Shah",
+    "party": "INC",
+    "votes": 2832,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 238,
+    "rank": 5
+   },
+   {
+    "name": "Punnam Rani Wangkhem",
+    "party": "NCP",
+    "votes": 99,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 34100,
+  "demog": {
+   "sex": {
+    "f": 1729,
+    "m": 1744
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8373,
+    13.2162,
+    13.5906,
+    12.1221,
+    10.7688,
+    9.8762,
+    8.6093,
+    7.7743,
+    6.133,
+    4.2614,
+    3.1097,
+    2.2747,
+    1.7564,
+    0.8638,
+    0.4607,
+    0.3455
+   ],
+   "region": {
+    "Rural": 3473,
+    "Urban": 0
+   },
+   "totalPop": 3473
+  }
+ },
+ "5": {
+  "no": 5,
+  "acid": 2211,
+  "name": "Thongju",
+  "results2022": [
+   {
+    "name": "Thongam Biswajit Singh",
+    "party": "BJP",
+    "votes": 15338,
+    "rank": 1
+   },
+   {
+    "name": "Seram Neken Singh",
+    "party": "INC",
+    "votes": 8649,
+    "rank": 2
+   },
+   {
+    "name": "Sanglakpam Preshyojit Sharma",
+    "party": "JD(U)",
+    "votes": 4849,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 674,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 29510,
+  "demog": {
+   "sex": {
+    "f": 658,
+    "m": 666
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8338,
+    13.2175,
+    13.5952,
+    12.1601,
+    10.7251,
+    9.8943,
+    8.6103,
+    7.7795,
+    6.1178,
+    4.3051,
+    3.1722,
+    2.2659,
+    1.7372,
+    0.8308,
+    0.3776,
+    0.3776
+   ],
+   "region": {
+    "Rural": 1324,
+    "Urban": 0
+   },
+   "totalPop": 1324
+  }
+ },
+ "6": {
+  "no": 6,
+  "acid": 2212,
+  "name": "Keirao",
+  "results2022": [
+   {
+    "name": "Lourembam Rameshwor Meetei",
+    "party": "BJP",
+    "votes": 17335,
+    "rank": 1
+   },
+   {
+    "name": "Md. Nasiruddin Khan",
+    "party": "NPP",
+    "votes": 9126,
+    "rank": 2
+   },
+   {
+    "name": "M.I. Khan",
+    "party": "NCP",
+    "votes": 983,
+    "rank": 3
+   },
+   {
+    "name": "Thongram Tony Meitei",
+    "party": "INC",
+    "votes": 249,
+    "rank": 4
+   },
+   {
+    "name": "Toijam Debananda Singh",
+    "party": "SHS",
+    "votes": 202,
+    "rank": 5
+   },
+   {
+    "name": "Yumnam Shanta Meetei",
+    "party": "JD(U)",
+    "votes": 111,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 97,
+    "rank": 7
+   }
+  ],
+  "totalVotes2022": 28103,
+  "demog": {
+   "sex": {
+    "f": 8120,
+    "m": 8201
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8343,
+    13.21,
+    13.5899,
+    12.1255,
+    10.753,
+    9.8768,
+    8.5902,
+    7.7875,
+    6.1455,
+    4.2522,
+    3.1248,
+    2.2915,
+    1.7585,
+    0.8578,
+    0.4411,
+    0.3615
+   ],
+   "region": {
+    "Rural": 10104,
+    "Urban": 6217
+   },
+   "totalPop": 16321
+  }
+ },
+ "7": {
+  "no": 7,
+  "acid": 2213,
+  "name": "Andro",
+  "results2022": [
+   {
+    "name": "Thounaojam Shyamkumar",
+    "party": "BJP",
+    "votes": 16739,
+    "rank": 1
+   },
+   {
+    "name": "Lourembam Sanjoy Singh",
+    "party": "NPP",
+    "votes": 15282,
+    "rank": 2
+   },
+   {
+    "name": "Asheibam Bele Singh",
+    "party": "IND",
+    "votes": 894,
+    "rank": 3
+   },
+   {
+    "name": "Keisham Ningthemjao Singh",
+    "party": "INC",
+    "votes": 388,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 120,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 33423,
+  "demog": {
+   "sex": {
+    "f": 2196,
+    "m": 2217
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8493,
+    13.211,
+    13.5735,
+    12.1233,
+    10.741,
+    9.8799,
+    8.5883,
+    7.7952,
+    6.1409,
+    4.2601,
+    3.1271,
+    2.2887,
+    1.7675,
+    0.8611,
+    0.4305,
+    0.3626
+   ],
+   "region": {
+    "Rural": 4413,
+    "Urban": 0
+   },
+   "totalPop": 4413
+  }
+ },
+ "8": {
+  "no": 8,
+  "acid": 2214,
+  "name": "Lamlai",
+  "results2022": [
+   {
+    "name": "Khongbantabam Ibomcha",
+    "party": "BJP",
+    "votes": 10105,
+    "rank": 1
+   },
+   {
+    "name": "Kshetrimayum Biren Singh",
+    "party": "JD(U)",
+    "votes": 9984,
+    "rank": 2
+   },
+   {
+    "name": "Achoibam Deben Singh",
+    "party": "INC",
+    "votes": 7049,
+    "rank": 3
+   },
+   {
+    "name": "Mongjam Poireihenba Meetei",
+    "party": "RPI(A)",
+    "votes": 957,
+    "rank": 4
+   },
+   {
+    "name": "Sapam Kangleipal Meitei",
+    "party": "IND",
+    "votes": 458,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 112,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 28665,
+  "demog": {
+   "sex": {
+    "f": 16948,
+    "m": 17113
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8384,
+    13.2116,
+    13.5845,
+    12.1282,
+    10.7513,
+    9.8764,
+    8.5963,
+    7.786,
+    6.1419,
+    4.2541,
+    3.1238,
+    2.29,
+    1.7615,
+    0.8602,
+    0.4375,
+    0.3582
+   ],
+   "region": {
+    "Rural": 34061,
+    "Urban": 0
+   },
+   "totalPop": 34061
+  }
+ },
+ "9": {
+  "no": 9,
+  "acid": 2215,
+  "name": "Thangmeiband",
+  "results2022": [
+   {
+    "name": "Khumukcham Joykisan Singh",
+    "party": "JD(U)",
+    "votes": 13629,
+    "rank": 1
+   },
+   {
+    "name": "Jotin Waikhom",
+    "party": "BJP",
+    "votes": 9856,
+    "rank": 2
+   },
+   {
+    "name": "Hijam Nutanchandra Singh",
+    "party": "INC",
+    "votes": 457,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 360,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 24302,
+  "demog": {
+   "sex": {
+    "f": 15324,
+    "m": 15472
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.835,
+    13.216,
+    13.5829,
+    12.125,
+    10.7514,
+    9.8779,
+    8.5953,
+    7.7835,
+    6.1404,
+    4.2538,
+    3.1238,
+    2.2893,
+    1.7632,
+    0.8605,
+    0.4384,
+    0.3637
+   ],
+   "region": {
+    "Rural": 2684,
+    "Urban": 28112
+   },
+   "totalPop": 30796
+  }
+ },
+ "10": {
+  "no": 10,
+  "acid": 2216,
+  "name": "Uripok",
+  "results2022": [
+   {
+    "name": "KHWAIRAKPAM RAGHUMANI SINGH",
+    "party": "BJP",
+    "votes": 8335,
+    "rank": 1
+   },
+   {
+    "name": "YUMNAM JOYKUMAR SINGH",
+    "party": "NPP",
+    "votes": 7426,
+    "rank": 2
+   },
+   {
+    "name": "KHOMBONGMAYUM SURESH SINGH",
+    "party": "JD(U)",
+    "votes": 5472,
+    "rank": 3
+   },
+   {
+    "name": "NUNGLEPAM MAHANANDA SINGH",
+    "party": "INC",
+    "votes": 1540,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 268,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 23041,
+  "demog": {
+   "sex": {
+    "f": 10106,
+    "m": 10203
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8402,
+    13.2158,
+    13.5851,
+    12.1276,
+    10.744,
+    9.8774,
+    8.5922,
+    7.7847,
+    6.1401,
+    4.2543,
+    3.1267,
+    2.2896,
+    1.7628,
+    0.8617,
+    0.4382,
+    0.3594
+   ],
+   "region": {
+    "Rural": 900,
+    "Urban": 19409
+   },
+   "totalPop": 20309
+  }
+ },
+ "11": {
+  "no": 11,
+  "acid": 2217,
+  "name": "Sagolband",
+  "results2022": [
+   {
+    "name": "Rajkumar Imo Singh",
+    "party": "BJP",
+    "votes": 11054,
+    "rank": 1
+   },
+   {
+    "name": "Dr. Khwairakpam Loken Singh",
+    "party": "JD(U)",
+    "votes": 8398,
+    "rank": 2
+   },
+   {
+    "name": "Moirangthem Momo Singh",
+    "party": "INC",
+    "votes": 564,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 228,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 20244,
+  "demog": {
+   "sex": {
+    "f": 57205,
+    "m": 57762
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.837,
+    13.2142,
+    13.5848,
+    12.1278,
+    10.75,
+    9.8767,
+    8.5946,
+    7.7866,
+    6.1392,
+    4.2551,
+    3.1252,
+    2.2867,
+    1.7622,
+    0.8602,
+    0.4384,
+    0.361
+   ],
+   "region": {
+    "Rural": 0,
+    "Urban": 114967
+   },
+   "totalPop": 114967
+  }
+ },
+ "12": {
+  "no": 12,
+  "acid": 2218,
+  "name": "Keishamthong",
+  "results2022": [
+   {
+    "name": "SAPAM NISHIKANT SINGH",
+    "party": "IND",
+    "votes": 8874,
+    "rank": 1
+   },
+   {
+    "name": "Maheshwar Thounaojam",
+    "party": "RPI(A)",
+    "votes": 8687,
+    "rank": 2
+   },
+   {
+    "name": "LANGPOKLAKPAM JAYANTA KUMAR SINGH",
+    "party": "NPP",
+    "votes": 5760,
+    "rank": 3
+   },
+   {
+    "name": "ELANGBAM SAMUEL JOHNSON",
+    "party": "BJP",
+    "votes": 1816,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 142,
+    "rank": 5
+   },
+   {
+    "name": "ARIBAM PRAMODINI DEVI",
+    "party": "INC",
+    "votes": 73,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 25352,
+  "demog": {
+   "sex": {
+    "f": 30086,
+    "m": 30376
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8377,
+    13.2133,
+    13.5837,
+    12.1266,
+    10.7489,
+    9.8773,
+    8.5955,
+    7.7851,
+    6.141,
+    4.2556,
+    3.1243,
+    2.2874,
+    1.7631,
+    0.86,
+    0.4399,
+    0.3606
+   ],
+   "region": {
+    "Rural": 3211,
+    "Urban": 57251
+   },
+   "totalPop": 60462
+  }
+ },
+ "13": {
+  "no": 13,
+  "acid": 2219,
+  "name": "Singjamei",
+  "results2022": [
+   {
+    "name": "Yumnam Khemchand Singh",
+    "party": "BJP",
+    "votes": 8709,
+    "rank": 1
+   },
+   {
+    "name": "Oinam Romen Singh",
+    "party": "NPP",
+    "votes": 6414,
+    "rank": 2
+   },
+   {
+    "name": "Ngangbam Robert Singh",
+    "party": "JD(U)",
+    "votes": 2164,
+    "rank": 3
+   },
+   {
+    "name": "Irengbam Hemochandra Singh",
+    "party": "INC",
+    "votes": 1600,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 128,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 19015,
+  "demog": {
+   "sex": {
+    "f": 16798,
+    "m": 16963
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8399,
+    13.2164,
+    13.5837,
+    12.1294,
+    10.7491,
+    9.8753,
+    8.5898,
+    7.7841,
+    6.1402,
+    4.2564,
+    3.1249,
+    2.2896,
+    1.7594,
+    0.859,
+    0.4413,
+    0.3614
+   ],
+   "region": {
+    "Rural": 8365,
+    "Urban": 25396
+   },
+   "totalPop": 33761
+  }
+ },
+ "14": {
+  "no": 14,
+  "acid": 2220,
+  "name": "Yaiskul",
+  "results2022": [
+   {
+    "name": "Thokchom Satyabrata Singh",
+    "party": "BJP",
+    "votes": 9724,
+    "rank": 1
+   },
+   {
+    "name": "Huidrom Vikramjit Singh",
+    "party": "NPP",
+    "votes": 9092,
+    "rank": 2
+   },
+   {
+    "name": "Thounaojam Brinda",
+    "party": "JD(U)",
+    "votes": 4574,
+    "rank": 3
+   },
+   {
+    "name": "Ningombam Helendro Singh",
+    "party": "INC",
+    "votes": 526,
+    "rank": 4
+   },
+   {
+    "name": "Rajkumar Suraj Singh",
+    "party": "SHS",
+    "votes": 122,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 119,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 24157,
+  "demog": {
+   "sex": {
+    "f": 9096,
+    "m": 9183
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8362,
+    13.2174,
+    13.5894,
+    12.1341,
+    10.75,
+    9.8802,
+    8.5946,
+    7.7904,
+    6.1382,
+    4.2563,
+    3.1238,
+    2.2868,
+    1.7561,
+    0.8534,
+    0.4377,
+    0.3556
+   ],
+   "region": {
+    "Rural": 7053,
+    "Urban": 11226
+   },
+   "totalPop": 18279
+  }
+ },
+ "15": {
+  "no": 15,
+  "acid": 2221,
+  "name": "Wangkhei",
+  "results2022": [
+   {
+    "name": "Thangjam Arunkumar",
+    "party": "JD(U)",
+    "votes": 11593,
+    "rank": 1
+   },
+   {
+    "name": "Okram Henry",
+    "party": "BJP",
+    "votes": 10840,
+    "rank": 2
+   },
+   {
+    "name": "Yumkham Erabot Singh",
+    "party": "NPP",
+    "votes": 9275,
+    "rank": 3
+   },
+   {
+    "name": "Rajkumar Priyobarta Singh",
+    "party": "INC",
+    "votes": 416,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 337,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 32461,
+  "demog": {
+   "sex": {
+    "f": 10155,
+    "m": 10256
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8405,
+    13.2135,
+    13.5858,
+    12.1258,
+    10.7491,
+    9.8819,
+    8.5983,
+    7.785,
+    6.1388,
+    4.2575,
+    3.1209,
+    2.2831,
+    1.7638,
+    0.8574,
+    0.436,
+    0.3625
+   ],
+   "region": {
+    "Rural": 12918,
+    "Urban": 7493
+   },
+   "totalPop": 20411
+  }
+ },
+ "16": {
+  "no": 16,
+  "acid": 2222,
+  "name": "Sekmai",
+  "results2022": [
+   {
+    "name": "Heikham Dingo Singh",
+    "party": "BJP",
+    "votes": 10010,
+    "rank": 1
+   },
+   {
+    "name": "Ayangbam Oken Singh",
+    "party": "NPP",
+    "votes": 6677,
+    "rank": 2
+   },
+   {
+    "name": "Khwairakpam Devendro Singh",
+    "party": "JD(U)",
+    "votes": 5966,
+    "rank": 3
+   },
+   {
+    "name": "Ningthoujam Popilal Singh",
+    "party": "NCP",
+    "votes": 2007,
+    "rank": 4
+   },
+   {
+    "name": "Ningthoujam Biren Singh",
+    "party": "INC",
+    "votes": 1595,
+    "rank": 5
+   },
+   {
+    "name": "Khaidem Ranjit Singh",
+    "party": "SHS",
+    "votes": 471,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 190,
+    "rank": 7
+   },
+   {
+    "name": "Khwairakpam Robin Singh",
+    "party": "IND",
+    "votes": 186,
+    "rank": 8
+   },
+   {
+    "name": "Maharabam Anita Devi",
+    "party": "IND",
+    "votes": 99,
+    "rank": 9
+   }
+  ],
+  "totalVotes2022": 27201,
+  "demog": {
+   "sex": {
+    "f": 24172,
+    "m": 24406
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8376,
+    13.2138,
+    13.5843,
+    12.1269,
+    10.7518,
+    9.8769,
+    8.5944,
+    7.7854,
+    6.1406,
+    4.255,
+    3.1249,
+    2.287,
+    1.7621,
+    0.8605,
+    0.4385,
+    0.3602
+   ],
+   "region": {
+    "Rural": 48578,
+    "Urban": 0
+   },
+   "totalPop": 48578
+  }
+ },
+ "17": {
+  "no": 17,
+  "acid": 2223,
+  "name": "Lamsang",
+  "results2022": [
+   {
+    "name": "Sorokhaibam Rajen Singh",
+    "party": "BJP",
+    "votes": 15185,
+    "rank": 1
+   },
+   {
+    "name": "Pukhrambam Sumati Devi",
+    "party": "NPP",
+    "votes": 14785,
+    "rank": 2
+   },
+   {
+    "name": "Arambam Karamjit Singh",
+    "party": "IND",
+    "votes": 733,
+    "rank": 3
+   },
+   {
+    "name": "Khundrakpam Kanba Meitei",
+    "party": "JD(U)",
+    "votes": 616,
+    "rank": 4
+   },
+   {
+    "name": "Likmabam Manibabu Singh",
+    "party": "INC",
+    "votes": 241,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 210,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 31770,
+  "demog": {
+   "sex": {
+    "f": 10640,
+    "m": 10743
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8309,
+    13.2068,
+    13.5809,
+    12.1265,
+    10.7515,
+    9.8723,
+    8.5956,
+    7.7866,
+    6.1451,
+    4.2604,
+    3.1287,
+    2.2915,
+    1.7631,
+    0.8605,
+    0.4349,
+    0.3648
+   ],
+   "region": {
+    "Rural": 19280,
+    "Urban": 2103
+   },
+   "totalPop": 21383
+  }
+ },
+ "18": {
+  "no": 18,
+  "acid": 2224,
+  "name": "Konthoujam",
+  "results2022": [
+   {
+    "name": "Dr. Sapam Ranjan Singh",
+    "party": "BJP",
+    "votes": 13432,
+    "rank": 1
+   },
+   {
+    "name": "Konthoujam Sharat Singh",
+    "party": "NPP",
+    "votes": 13038,
+    "rank": 2
+   },
+   {
+    "name": "Laishram Nando Singh",
+    "party": "INC",
+    "votes": 895,
+    "rank": 3
+   },
+   {
+    "name": "Nongmaithem Herojit Singh",
+    "party": "JD(U)",
+    "votes": 808,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 152,
+    "rank": 5
+   },
+   {
+    "name": "Khoirom Binarani Devi",
+    "party": "NCP",
+    "votes": 75,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 28400,
+  "demog": {
+   "sex": {
+    "f": 49882,
+    "m": 50372
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8367,
+    13.2134,
+    13.5835,
+    12.1292,
+    10.7507,
+    9.8759,
+    8.5952,
+    7.7862,
+    6.1394,
+    4.2552,
+    3.1241,
+    2.2872,
+    1.7625,
+    0.8598,
+    0.4399,
+    0.3611
+   ],
+   "region": {
+    "Rural": 63246,
+    "Urban": 37008
+   },
+   "totalPop": 100254
+  }
+ },
+ "19": {
+  "no": 19,
+  "acid": 2225,
+  "name": "Patsoi",
+  "results2022": [
+   {
+    "name": "Sapam Kunjakeswor (Keba) Singh",
+    "party": "BJP",
+    "votes": 12186,
+    "rank": 1
+   },
+   {
+    "name": "Akoijam Mirabai Devi",
+    "party": "INC",
+    "votes": 11499,
+    "rank": 2
+   },
+   {
+    "name": "R.K. Rameshwar Singh",
+    "party": "NPP",
+    "votes": 10741,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 285,
+    "rank": 4
+   },
+   {
+    "name": "Wakambam Ibomcha Singh",
+    "party": "JD(U)",
+    "votes": 125,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 34836,
+  "demog": {
+   "sex": {
+    "f": 129181,
+    "m": 130439
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8371,
+    13.2143,
+    13.5852,
+    12.1273,
+    10.7503,
+    9.8767,
+    8.5949,
+    7.786,
+    6.1397,
+    4.2551,
+    3.1253,
+    2.2872,
+    1.7618,
+    0.8601,
+    0.4383,
+    0.3605
+   ],
+   "region": {
+    "Rural": 48649,
+    "Urban": 210971
+   },
+   "totalPop": 259620
+  }
+ },
+ "20": {
+  "no": 20,
+  "acid": 2226,
+  "name": "Langthabal",
+  "results2022": [
+   {
+    "name": "Karam Shyam",
+    "party": "BJP",
+    "votes": 10815,
+    "rank": 1
+   },
+   {
+    "name": "Okram Joy Singh",
+    "party": "INC",
+    "votes": 8762,
+    "rank": 2
+   },
+   {
+    "name": "Karam Nabakishor Singh",
+    "party": "NPP",
+    "votes": 5949,
+    "rank": 3
+   },
+   {
+    "name": "Hijam Somarendro Singh",
+    "party": "IND",
+    "votes": 504,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 237,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 26267,
+  "demog": {
+   "sex": {
+    "f": 11293,
+    "m": 11402
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8381,
+    13.2144,
+    13.5845,
+    12.126,
+    10.7513,
+    9.8744,
+    8.5966,
+    7.7859,
+    6.1379,
+    4.2564,
+    3.124,
+    2.2868,
+    1.7625,
+    0.8592,
+    0.4406,
+    0.3613
+   ],
+   "region": {
+    "Rural": 22695,
+    "Urban": 0
+   },
+   "totalPop": 22695
+  }
+ },
+ "21": {
+  "no": 21,
+  "acid": 2227,
+  "name": "Naoriya pakhanglakpa",
+  "results2022": [
+   {
+    "name": "Sagolshem Kebi Devi",
+    "party": "BJP",
+    "votes": 11058,
+    "rank": 1
+   },
+   {
+    "name": "Soibam Subhaschandra Singh",
+    "party": "NPP",
+    "votes": 10527,
+    "rank": 2
+   },
+   {
+    "name": "Soraisham Manaoton Singh",
+    "party": "INC",
+    "votes": 9444,
+    "rank": 3
+   },
+   {
+    "name": "Konthoujam Manoranjan Singh",
+    "party": "JD(U)",
+    "votes": 1721,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 214,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 32964,
+  "demog": {
+   "sex": {
+    "f": 15648,
+    "m": 15800
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8366,
+    13.2123,
+    13.5843,
+    12.128,
+    10.7511,
+    9.8766,
+    8.5951,
+    7.7843,
+    6.1403,
+    4.2546,
+    3.1226,
+    2.2895,
+    1.7616,
+    0.8617,
+    0.4388,
+    0.3625
+   ],
+   "region": {
+    "Rural": 0,
+    "Urban": 31448
+   },
+   "totalPop": 31448
+  }
+ },
+ "22": {
+  "no": 22,
+  "acid": 2228,
+  "name": "Wangoi",
+  "results2022": [
+   {
+    "name": "KHURAIJAM LOKEN SINGH",
+    "party": "NPP",
+    "votes": 15606,
+    "rank": 1
+   },
+   {
+    "name": "Oinam Lukhoi Singh",
+    "party": "BJP",
+    "votes": 12340,
+    "rank": 2
+   },
+   {
+    "name": "Salam Joy Singh",
+    "party": "INC",
+    "votes": 156,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 122,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 28224,
+  "demog": {
+   "sex": {
+    "f": 21556,
+    "m": 21762
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8386,
+    13.2116,
+    13.5856,
+    12.1266,
+    10.7484,
+    9.8781,
+    8.5923,
+    7.7866,
+    6.1383,
+    4.2546,
+    3.1257,
+    2.29,
+    1.7614,
+    0.8611,
+    0.4386,
+    0.3624
+   ],
+   "region": {
+    "Rural": 26344,
+    "Urban": 16974
+   },
+   "totalPop": 43318
+  }
+ },
+ "23": {
+  "no": 23,
+  "acid": 2229,
+  "name": "Mayang imphal",
+  "results2022": [
+   {
+    "name": "Kongkham Robindro Singh",
+    "party": "BJP",
+    "votes": 14642,
+    "rank": 1
+   },
+   {
+    "name": "Dr. Khumujam Ratankumar Singh",
+    "party": "INC",
+    "votes": 8513,
+    "rank": 2
+   },
+   {
+    "name": "Urikhimbam Ramesh Singh",
+    "party": "NPP",
+    "votes": 7374,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 150,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 30679,
+  "demog": {
+   "sex": {
+    "f": 8885,
+    "m": 8971
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8387,
+    13.2168,
+    13.5809,
+    12.1304,
+    10.7527,
+    9.8734,
+    8.5909,
+    7.7901,
+    6.1436,
+    4.2619,
+    3.1306,
+    2.2849,
+    1.7585,
+    0.8569,
+    0.4312,
+    0.3584
+   ],
+   "region": {
+    "Rural": 17735,
+    "Urban": 121
+   },
+   "totalPop": 17856
+  }
+ },
+ "24": {
+  "no": 24,
+  "acid": 2230,
+  "name": "Nambol",
+  "results2022": [
+   {
+    "name": "THOUNAOJAM BASANTA KUMAR SINGH",
+    "party": "BJP",
+    "votes": 16885,
+    "rank": 1
+   },
+   {
+    "name": "NAMEIRAKPAM LOKEN SINGH",
+    "party": "INC",
+    "votes": 13825,
+    "rank": 2
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 124,
+    "rank": 3
+   }
+  ],
+  "totalVotes2022": 30834,
+  "demog": {
+   "sex": {
+    "f": 7862,
+    "m": 7939
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8415,
+    13.2144,
+    13.5877,
+    12.1258,
+    10.7525,
+    9.8728,
+    8.5944,
+    7.7843,
+    6.1389,
+    4.2529,
+    3.1264,
+    2.2973,
+    1.7531,
+    0.8544,
+    0.443,
+    0.3607
+   ],
+   "region": {
+    "Rural": 3511,
+    "Urban": 12290
+   },
+   "totalPop": 15801
+  }
+ },
+ "25": {
+  "no": 25,
+  "acid": 2231,
+  "name": "Oinam",
+  "results2022": [
+   {
+    "name": "Irengbam Nalini Devi",
+    "party": "NPP",
+    "votes": 10808,
+    "rank": 1
+   },
+   {
+    "name": "Laishram Radhakishore Singh",
+    "party": "BJP",
+    "votes": 10366,
+    "rank": 2
+   },
+   {
+    "name": "Thokchom Ithoibi Devi",
+    "party": "INC",
+    "votes": 3289,
+    "rank": 3
+   },
+   {
+    "name": "Laitonjam Brojen Singh",
+    "party": "RPI(A)",
+    "votes": 970,
+    "rank": 4
+   },
+   {
+    "name": "Thingbaijam Swarankumar Singh",
+    "party": "JD(U)",
+    "votes": 527,
+    "rank": 5
+   },
+   {
+    "name": "Ashem Babu Singh",
+    "party": "SHS",
+    "votes": 408,
+    "rank": 6
+   },
+   {
+    "name": "Ngangom Shivakumar Singh",
+    "party": "IND",
+    "votes": 145,
+    "rank": 7
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 128,
+    "rank": 8
+   }
+  ],
+  "totalVotes2022": 26641,
+  "demog": {
+   "sex": {
+    "f": 23795,
+    "m": 24026
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8347,
+    13.216,
+    13.584,
+    12.1265,
+    10.7505,
+    9.8764,
+    8.5925,
+    7.7853,
+    6.1396,
+    4.2555,
+    3.1262,
+    2.2877,
+    1.7628,
+    0.8615,
+    0.4391,
+    0.3618
+   ],
+   "region": {
+    "Rural": 34931,
+    "Urban": 12890
+   },
+   "totalPop": 47821
+  }
+ },
+ "26": {
+  "no": 26,
+  "acid": 2232,
+  "name": "Bishenpur",
+  "results2022": [
+   {
+    "name": "Konthoujam Govindas Singh",
+    "party": "BJP",
+    "votes": 13611,
+    "rank": 1
+   },
+   {
+    "name": "Oinam Nabakishore Singh",
+    "party": "JD(U)",
+    "votes": 12202,
+    "rank": 2
+   },
+   {
+    "name": "Ningthoujam Joykumar Singh",
+    "party": "INC",
+    "votes": 3395,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 350,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 29558,
+  "demog": {
+   "sex": {
+    "f": 27041,
+    "m": 27309
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8372,
+    13.2144,
+    13.5842,
+    12.127,
+    10.7507,
+    9.8767,
+    8.5943,
+    7.7866,
+    6.1398,
+    4.2557,
+    3.126,
+    2.287,
+    1.7626,
+    0.8592,
+    0.4379,
+    0.3606
+   ],
+   "region": {
+    "Rural": 28026,
+    "Urban": 26324
+   },
+   "totalPop": 54350
+  }
+ },
+ "27": {
+  "no": 27,
+  "acid": 2233,
+  "name": "Moirang",
+  "results2022": [
+   {
+    "name": "Thongam Shanti Singh",
+    "party": "NPP",
+    "votes": 14349,
+    "rank": 1
+   },
+   {
+    "name": "Mairembam Prithviraj Singh",
+    "party": "BJP",
+    "votes": 12118,
+    "rank": 2
+   },
+   {
+    "name": "Pukhrem Sharatchandra Singh",
+    "party": "INC",
+    "votes": 9358,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 271,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 36096,
+  "demog": {
+   "sex": {
+    "f": 12959,
+    "m": 13088
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8412,
+    13.2146,
+    13.5831,
+    12.1281,
+    10.7498,
+    9.8783,
+    8.5922,
+    7.7859,
+    6.1389,
+    4.2538,
+    3.1251,
+    2.2882,
+    1.7622,
+    0.86,
+    0.4377,
+    0.3609
+   ],
+   "region": {
+    "Rural": 26047,
+    "Urban": 0
+   },
+   "totalPop": 26047
+  }
+ },
+ "28": {
+  "no": 28,
+  "acid": 2234,
+  "name": "Thanga",
+  "results2022": [
+   {
+    "name": "Tongbram Robindro Singh",
+    "party": "BJP",
+    "votes": 13095,
+    "rank": 1
+   },
+   {
+    "name": "Birla Haobijam",
+    "party": "INC",
+    "votes": 7844,
+    "rank": 2
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 196,
+    "rank": 3
+   }
+  ],
+  "totalVotes2022": 21135,
+  "demog": {
+   "sex": {
+    "f": 24614,
+    "m": 24853
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8376,
+    13.2128,
+    13.5868,
+    12.1273,
+    10.7486,
+    9.8773,
+    8.5956,
+    7.787,
+    6.1394,
+    4.2554,
+    3.1233,
+    2.2864,
+    1.7628,
+    0.8612,
+    0.4387,
+    0.3598
+   ],
+   "region": {
+    "Rural": 47778,
+    "Urban": 1689
+   },
+   "totalPop": 49467
+  }
+ },
+ "29": {
+  "no": 29,
+  "acid": 2235,
+  "name": "Kumbi",
+  "results2022": [
+   {
+    "name": "Sanasam Premchandra Singh",
+    "party": "BJP",
+    "votes": 8513,
+    "rank": 1
+   },
+   {
+    "name": "Ahanthem Shanjoy Singh",
+    "party": "JD(U)",
+    "votes": 8141,
+    "rank": 2
+   },
+   {
+    "name": "Ningthoujam Mangi Singh",
+    "party": "NPP",
+    "votes": 7787,
+    "rank": 3
+   },
+   {
+    "name": "Dr. Khangembam Romesh Singh",
+    "party": "INC",
+    "votes": 1169,
+    "rank": 4
+   },
+   {
+    "name": "Naorem Sorojini Devi",
+    "party": "IND",
+    "votes": 330,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 147,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 26087,
+  "demog": {
+   "sex": {
+    "f": 30022,
+    "m": 30316
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8377,
+    13.2139,
+    13.5835,
+    12.1267,
+    10.7511,
+    9.8777,
+    8.5949,
+    7.7861,
+    6.1404,
+    4.2544,
+    3.1257,
+    2.2871,
+    1.7617,
+    0.8602,
+    0.4375,
+    0.3613
+   ],
+   "region": {
+    "Rural": 60338,
+    "Urban": 0
+   },
+   "totalPop": 60338
+  }
+ },
+ "30": {
+  "no": 30,
+  "acid": 2236,
+  "name": "Lilong",
+  "results2022": [
+   {
+    "name": "Mohd Abdul Nasir",
+    "party": "JD(U)",
+    "votes": 16886,
+    "rank": 1
+   },
+   {
+    "name": "Y. Antas Khan",
+    "party": "BJP",
+    "votes": 16316,
+    "rank": 2
+   },
+   {
+    "name": "Syed Anwar Hussain",
+    "party": "INC",
+    "votes": 445,
+    "rank": 3
+   },
+   {
+    "name": "Abdul Manan",
+    "party": "IND",
+    "votes": 162,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 140,
+    "rank": 5
+   },
+   {
+    "name": "Md Irshad Hussain",
+    "party": "IND",
+    "votes": 20,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 33969,
+  "demog": {
+   "sex": {
+    "f": 14694,
+    "m": 14839
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8353,
+    13.2123,
+    13.5848,
+    12.1288,
+    10.7541,
+    9.8771,
+    8.5972,
+    7.7845,
+    6.1389,
+    4.2563,
+    3.1253,
+    2.2856,
+    1.7641,
+    0.8601,
+    0.4368,
+    0.3589
+   ],
+   "region": {
+    "Rural": 6489,
+    "Urban": 23044
+   },
+   "totalPop": 29533
+  }
+ },
+ "31": {
+  "no": 31,
+  "acid": 2237,
+  "name": "Thoubal",
+  "results2022": [
+   {
+    "name": "Okram Ibobi Singh",
+    "party": "INC",
+    "votes": 15085,
+    "rank": 1
+   },
+   {
+    "name": "Leitanthem Basanta Singh",
+    "party": "BJP",
+    "votes": 12542,
+    "rank": 2
+   },
+   {
+    "name": "Konsam Michael Singh",
+    "party": "SHS",
+    "votes": 1622,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 187,
+    "rank": 4
+   },
+   {
+    "name": "Irom Chaoba Singh",
+    "party": "JD(U)",
+    "votes": 145,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 29581,
+  "demog": {
+   "sex": {
+    "f": 4904,
+    "m": 4953
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8291,
+    13.2089,
+    13.5843,
+    12.1335,
+    10.7538,
+    9.8813,
+    8.603,
+    7.7813,
+    6.1378,
+    4.2609,
+    3.1247,
+    2.2826,
+    1.7652,
+    0.8522,
+    0.4464,
+    0.3551
+   ],
+   "region": {
+    "Rural": 5086,
+    "Urban": 4771
+   },
+   "totalPop": 9857
+  }
+ },
+ "32": {
+  "no": 32,
+  "acid": 2238,
+  "name": "Wangkhem",
+  "results2022": [
+   {
+    "name": "Keisham Meghachandra Singh",
+    "party": "INC",
+    "votes": 8889,
+    "rank": 1
+   },
+   {
+    "name": "Yumnam Nabachandra Singh",
+    "party": "BJP",
+    "votes": 7597,
+    "rank": 2
+   },
+   {
+    "name": "Prof. (Dr.) Nimai Chand Luwang",
+    "party": "RPI(A)",
+    "votes": 7100,
+    "rank": 3
+   },
+   {
+    "name": "Kharibam Jiban Singh",
+    "party": "NPP",
+    "votes": 3474,
+    "rank": 4
+   },
+   {
+    "name": "Kangabam Jadu @ Jadumani Singh",
+    "party": "JD(U)",
+    "votes": 2891,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 136,
+    "rank": 6
+   },
+   {
+    "name": "Oinam Haridas Singh",
+    "party": "NCP",
+    "votes": 82,
+    "rank": 7
+   },
+   {
+    "name": "Md Abdul Halim",
+    "party": "IND",
+    "votes": 74,
+    "rank": 8
+   },
+   {
+    "name": "Laishram Domen Singh",
+    "party": "IND",
+    "votes": 34,
+    "rank": 9
+   }
+  ],
+  "totalVotes2022": 30277,
+  "demog": {
+   "sex": {
+    "f": 1530,
+    "m": 1546
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8114,
+    13.199,
+    13.5891,
+    12.1261,
+    10.7607,
+    9.8505,
+    8.6151,
+    7.8023,
+    6.1443,
+    4.2588,
+    3.1209,
+    2.3082,
+    1.7555,
+    0.8453,
+    0.4551,
+    0.3576
+   ],
+   "region": {
+    "Rural": 2263,
+    "Urban": 813
+   },
+   "totalPop": 3076
+  }
+ },
+ "33": {
+  "no": 33,
+  "acid": 2239,
+  "name": "Heirok",
+  "results2022": [
+   {
+    "name": "Thokchom Radheshyam Singh",
+    "party": "BJP",
+    "votes": 13589,
+    "rank": 1
+   },
+   {
+    "name": "Moirangthem Okendro",
+    "party": "INC",
+    "votes": 13186,
+    "rank": 2
+   },
+   {
+    "name": "Ningthoujam Diten Singh",
+    "party": "NPP",
+    "votes": 4766,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 121,
+    "rank": 4
+   },
+   {
+    "name": "Moirangthem Totomsana Nongshaba",
+    "party": "Rashtriya Janhit Sangharsh Party",
+    "votes": 86,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 31748,
+  "demog": {
+   "sex": {
+    "f": 12882,
+    "m": 13007
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8399,
+    13.2141,
+    13.5849,
+    12.1248,
+    10.7536,
+    9.8768,
+    8.5982,
+    7.7871,
+    6.1377,
+    4.2528,
+    3.1249,
+    2.2867,
+    1.7614,
+    0.8614,
+    0.4365,
+    0.3592
+   ],
+   "region": {
+    "Rural": 24173,
+    "Urban": 1716
+   },
+   "totalPop": 25889
+  }
+ },
+ "34": {
+  "no": 34,
+  "acid": 2240,
+  "name": "Wangjing Tentha",
+  "results2022": [
+   {
+    "name": "Paonam Brojen Singh",
+    "party": "BJP",
+    "votes": 15765,
+    "rank": 1
+   },
+   {
+    "name": "Moirangthem Hemanta Singh",
+    "party": "INC",
+    "votes": 13852,
+    "rank": 2
+   },
+   {
+    "name": "Usham Manglem",
+    "party": "NPP",
+    "votes": 723,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 158,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 30498,
+  "demog": {
+   "sex": {
+    "f": 24511,
+    "m": 24747
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8378,
+    13.2141,
+    13.5836,
+    12.13,
+    10.7495,
+    9.8766,
+    8.5956,
+    7.7835,
+    6.1391,
+    4.2572,
+    3.1244,
+    2.288,
+    1.7622,
+    0.8608,
+    0.4385,
+    0.3593
+   ],
+   "region": {
+    "Rural": 13944,
+    "Urban": 35314
+   },
+   "totalPop": 49258
+  }
+ },
+ "35": {
+  "no": 35,
+  "acid": 2241,
+  "name": "Khangabok",
+  "results2022": [
+   {
+    "name": "Surjakumar Okram",
+    "party": "INC",
+    "votes": 17435,
+    "rank": 1
+   },
+   {
+    "name": "Khundrakpam Menjor Mangang",
+    "party": "BJP",
+    "votes": 9632,
+    "rank": 2
+   },
+   {
+    "name": "Thokchom Jadumani Singh",
+    "party": "JD(U)",
+    "votes": 7555,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 413,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 35035,
+  "demog": {
+   "sex": {
+    "f": 32767,
+    "m": 33088
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8364,
+    13.2154,
+    13.5859,
+    12.1282,
+    10.7509,
+    9.8778,
+    8.5946,
+    7.7853,
+    6.1392,
+    4.2533,
+    3.125,
+    2.2868,
+    1.763,
+    0.8595,
+    0.4373,
+    0.3614
+   ],
+   "region": {
+    "Rural": 21956,
+    "Urban": 43899
+   },
+   "totalPop": 65855
+  }
+ },
+ "36": {
+  "no": 36,
+  "acid": 2242,
+  "name": "Wabgai",
+  "results2022": [
+   {
+    "name": "Dr.USHAM DEBEN SINGH",
+    "party": "BJP",
+    "votes": 9138,
+    "rank": 1
+   },
+   {
+    "name": "MD.FAJUR RAHIM",
+    "party": "INC",
+    "votes": 9088,
+    "rank": 2
+   },
+   {
+    "name": "MAYENGBAM RANJIT SINGH",
+    "party": "NPP",
+    "votes": 5873,
+    "rank": 3
+   },
+   {
+    "name": "MD. SIKANDER",
+    "party": "JD(U)",
+    "votes": 3601,
+    "rank": 4
+   },
+   {
+    "name": "SAKIR AHMED",
+    "party": "IND",
+    "votes": 1501,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 152,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 29353,
+  "demog": {
+   "sex": {
+    "f": 15618,
+    "m": 15772
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8391,
+    13.2176,
+    13.5839,
+    12.1313,
+    10.7518,
+    9.8789,
+    8.5919,
+    7.7859,
+    6.1389,
+    4.2529,
+    3.1252,
+    2.2874,
+    1.7617,
+    0.857,
+    0.4396,
+    0.3568
+   ],
+   "region": {
+    "Rural": 25604,
+    "Urban": 5786
+   },
+   "totalPop": 31390
+  }
+ },
+ "37": {
+  "no": 37,
+  "acid": 2243,
+  "name": "Kakching",
+  "results2022": [
+   {
+    "name": "MAYANGLAMBAM RAMESHWAR SINGH",
+    "party": "NPP",
+    "votes": 8546,
+    "rank": 1
+   },
+   {
+    "name": "Yengkhom Surchandra Singh",
+    "party": "BJP",
+    "votes": 7341,
+    "rank": 2
+   },
+   {
+    "name": "KSHETRIMAYUM KENNEDY SINGH",
+    "party": "INC",
+    "votes": 5873,
+    "rank": 3
+   },
+   {
+    "name": "Naorem Nabachandra Singh",
+    "party": "JD(U)",
+    "votes": 2451,
+    "rank": 4
+   },
+   {
+    "name": "YENGKHOM NILACHANDRA SINGH",
+    "party": "NCP",
+    "votes": 2009,
+    "rank": 5
+   },
+   {
+    "name": "YENGKHOM ROMA DEVI",
+    "party": "CPI",
+    "votes": 676,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 239,
+    "rank": 7
+   }
+  ],
+  "totalVotes2022": 27135,
+  "demog": {
+   "sex": {
+    "f": 33500,
+    "m": 33823
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8364,
+    13.2139,
+    13.5838,
+    12.1281,
+    10.7497,
+    9.8763,
+    8.5959,
+    7.7863,
+    6.1391,
+    4.2556,
+    3.1252,
+    2.2875,
+    1.7617,
+    0.86,
+    0.4382,
+    0.3624
+   ],
+   "region": {
+    "Rural": 52235,
+    "Urban": 15088
+   },
+   "totalPop": 67323
+  }
+ },
+ "38": {
+  "no": 38,
+  "acid": 2244,
+  "name": "Hiyanglam",
+  "results2022": [
+   {
+    "name": "DR. YUMNAM RADHESHYAM SINGH",
+    "party": "BJP",
+    "votes": 8613,
+    "rank": 1
+   },
+   {
+    "name": "DR. HUIDROM JITEN SINGH",
+    "party": "INC",
+    "votes": 6584,
+    "rank": 2
+   },
+   {
+    "name": "ELANGBAM DWIJAMANI SINGH",
+    "party": "JD(U)",
+    "votes": 6559,
+    "rank": 3
+   },
+   {
+    "name": "MAIBAM DHANABIR SINGH",
+    "party": "NPP",
+    "votes": 4223,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 150,
+    "rank": 5
+   },
+   {
+    "name": "NONGMAITHEM SANJAY SINGH",
+    "party": "RPI(A)",
+    "votes": 134,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 26263,
+  "demog": {
+   "sex": {
+    "f": 31742,
+    "m": 32053
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8374,
+    13.2142,
+    13.5841,
+    12.1279,
+    10.7501,
+    9.8769,
+    8.5947,
+    7.7859,
+    6.1384,
+    4.2558,
+    3.1256,
+    2.287,
+    1.7619,
+    0.8606,
+    0.4389,
+    0.3605
+   ],
+   "region": {
+    "Rural": 63795,
+    "Urban": 0
+   },
+   "totalPop": 63795
+  }
+ },
+ "39": {
+  "no": 39,
+  "acid": 2245,
+  "name": "Sugnu",
+  "results2022": [
+   {
+    "name": "KANGUJAM RANJIT SINGH",
+    "party": "INC",
+    "votes": 12673,
+    "rank": 1
+   },
+   {
+    "name": "MAYANGLAMBAM BINOD",
+    "party": "BJP",
+    "votes": 11657,
+    "rank": 2
+   },
+   {
+    "name": "KAKYENPAIBAM MUKTASANA SINGH",
+    "party": "IND",
+    "votes": 555,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 146,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 25031,
+  "demog": {
+   "sex": {
+    "f": 17074,
+    "m": 17240
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8377,
+    13.2133,
+    13.5863,
+    12.1292,
+    10.7478,
+    9.8764,
+    8.5971,
+    7.7869,
+    6.1404,
+    4.2548,
+    3.1241,
+    2.2877,
+    1.7602,
+    0.8597,
+    0.4371,
+    0.3614
+   ],
+   "region": {
+    "Rural": 34314,
+    "Urban": 0
+   },
+   "totalPop": 34314
+  }
+ },
+ "40": {
+  "no": 40,
+  "acid": 2246,
+  "name": "Jiribam",
+  "results2022": [
+   {
+    "name": "MD. ACHAB UDDIN",
+    "party": "JD(U)",
+    "votes": 12313,
+    "rank": 1
+   },
+   {
+    "name": "NAMEIRAKPAM BUDHACHANDRA SINGH",
+    "party": "BJP",
+    "votes": 11897,
+    "rank": 2
+   },
+   {
+    "name": "MAKAKMAYUM ABBAS KHAN",
+    "party": "NPP",
+    "votes": 1113,
+    "rank": 3
+   },
+   {
+    "name": "BADRUR RAHMAN",
+    "party": "INC",
+    "votes": 746,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 579,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 26648,
+  "demog": {
+   "sex": {
+    "f": 22670,
+    "m": 22967
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8426,
+    13.202,
+    13.5789,
+    12.1305,
+    10.8092,
+    9.8911,
+    8.6136,
+    7.7591,
+    6.1047,
+    4.2619,
+    3.129,
+    2.2964,
+    1.742,
+    0.8524,
+    0.436,
+    0.3506
+   ],
+   "region": {
+    "Rural": 45637,
+    "Urban": 0
+   },
+   "totalPop": 45637
+  }
+ },
+ "41": {
+  "no": 41,
+  "acid": 2247,
+  "name": "Chandel",
+  "results2022": [
+   {
+    "name": "SS. Olish",
+    "party": "BJP",
+    "votes": 37066,
+    "rank": 1
+   },
+   {
+    "name": "Langhu Paulhring Anal",
+    "party": "NPF",
+    "votes": 9725,
+    "rank": 2
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 91,
+    "rank": 3
+   }
+  ],
+  "totalVotes2022": 46882,
+  "demog": {
+   "sex": {
+    "f": 17759,
+    "m": 17934
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8385,
+    13.2099,
+    13.5825,
+    12.1284,
+    10.75,
+    9.8787,
+    8.5955,
+    7.7858,
+    6.1413,
+    4.2557,
+    3.1267,
+    2.2862,
+    1.7623,
+    0.8601,
+    0.4371,
+    0.3614
+   ],
+   "region": {
+    "Rural": 35693,
+    "Urban": 0
+   },
+   "totalPop": 35693
+  }
+ },
+ "42": {
+  "no": 42,
+  "acid": 2248,
+  "name": "Tengnoupal",
+  "results2022": [
+   {
+    "name": "LETPAO HAOKIP",
+    "party": "BJP",
+    "votes": 21663,
+    "rank": 1
+   },
+   {
+    "name": "D. Korungthang",
+    "party": "NPF",
+    "votes": 15252,
+    "rank": 2
+   },
+   {
+    "name": "Wairok Morung Makunga",
+    "party": "INC",
+    "votes": 4099,
+    "rank": 3
+   },
+   {
+    "name": "Tantanga Kohai Moshilpha",
+    "party": "IND",
+    "votes": 777,
+    "rank": 4
+   },
+   {
+    "name": "Kh. David Maring",
+    "party": "RPI(A)",
+    "votes": 52,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 32,
+    "rank": 6
+   },
+   {
+    "name": "Jamkholun Haokip",
+    "party": "IND",
+    "votes": 27,
+    "rank": 7
+   }
+  ],
+  "totalVotes2022": 41902,
+  "demog": {
+   "sex": {
+    "f": 20529,
+    "m": 20740
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8438,
+    13.1867,
+    13.5477,
+    12.1156,
+    10.7563,
+    9.8985,
+    8.6094,
+    7.7976,
+    6.1547,
+    4.272,
+    3.1404,
+    2.285,
+    1.7495,
+    0.8554,
+    0.4337,
+    0.3538
+   ],
+   "region": {
+    "Rural": 41042,
+    "Urban": 227
+   },
+   "totalPop": 41269
+  }
+ },
+ "43": {
+  "no": 43,
+  "acid": 2249,
+  "name": "Phungyar",
+  "results2022": [
+   {
+    "name": "LEISHIYO KEISHING",
+    "party": "NPF",
+    "votes": 11642,
+    "rank": 1
+   },
+   {
+    "name": "AWUNG SHIMRAY HOPINGSON",
+    "party": "BJP",
+    "votes": 10863,
+    "rank": 2
+   },
+   {
+    "name": "VICTOR KEISHING",
+    "party": "INC",
+    "votes": 7453,
+    "rank": 3
+   },
+   {
+    "name": "WUNGNAOSHANG KASAR",
+    "party": "JD(U)",
+    "votes": 693,
+    "rank": 4
+   },
+   {
+    "name": "NINGHOR JAJO",
+    "party": "SHS",
+    "votes": 154,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 33,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 30838,
+  "demog": {
+   "sex": {
+    "f": 8646,
+    "m": 8732
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8395,
+    13.2121,
+    13.5861,
+    12.1303,
+    10.7492,
+    9.8803,
+    8.5971,
+    7.7857,
+    6.1399,
+    4.2525,
+    3.1246,
+    2.2845,
+    1.7608,
+    0.8574,
+    0.4431,
+    0.3568
+   ],
+   "region": {
+    "Rural": 17378,
+    "Urban": 0
+   },
+   "totalPop": 17378
+  }
+ },
+ "44": {
+  "no": 44,
+  "acid": 2250,
+  "name": "Ukhrul",
+  "results2022": [
+   {
+    "name": "RAM MUIVAH",
+    "party": "NPF",
+    "votes": 15503,
+    "rank": 1
+   },
+   {
+    "name": "ALFRED KANNGAM S. ARTHUR",
+    "party": "INC",
+    "votes": 14561,
+    "rank": 2
+   },
+   {
+    "name": "SOMATAI SHAIZA",
+    "party": "BJP",
+    "votes": 9961,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 48,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 40073,
+  "demog": {
+   "sex": {
+    "f": 27488,
+    "m": 27755
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8386,
+    13.2143,
+    13.5854,
+    12.1282,
+    10.7507,
+    9.8764,
+    8.5948,
+    7.7856,
+    6.1401,
+    4.2539,
+    3.1244,
+    2.2863,
+    1.7613,
+    0.8598,
+    0.4399,
+    0.3602
+   ],
+   "region": {
+    "Rural": 55243,
+    "Urban": 0
+   },
+   "totalPop": 55243
+  }
+ },
+ "45": {
+  "no": 45,
+  "acid": 2251,
+  "name": "Chingai",
+  "results2022": [
+   {
+    "name": "KHASHIM VASHUM",
+    "party": "NPF",
+    "votes": 12837,
+    "rank": 1
+   },
+   {
+    "name": "NINGAM CHAMROY",
+    "party": "NPP",
+    "votes": 10501,
+    "rank": 2
+   },
+   {
+    "name": "PRESHOW MK SHIMRAY",
+    "party": "BJP",
+    "votes": 9349,
+    "rank": 3
+   },
+   {
+    "name": "SWORD VASHUM",
+    "party": "INC",
+    "votes": 8150,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 61,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 40898,
+  "demog": {
+   "sex": {
+    "f": 18395,
+    "m": 18595
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8527,
+    13.2387,
+    13.5902,
+    12.1411,
+    10.7543,
+    9.8783,
+    8.5888,
+    7.7724,
+    6.1233,
+    4.2444,
+    3.1171,
+    2.2817,
+    1.7572,
+    0.8597,
+    0.438,
+    0.3623
+   ],
+   "region": {
+    "Rural": 36990,
+    "Urban": 0
+   },
+   "totalPop": 36990
+  }
+ },
+ "46": {
+  "no": 46,
+  "acid": 2252,
+  "name": "Saikul",
+  "results2022": [
+   {
+    "name": "Kimneo Haokip Hangshing",
+    "party": "KPA",
+    "votes": 6710,
+    "rank": 1
+   },
+   {
+    "name": "Kenn Raikhan",
+    "party": "IND",
+    "votes": 5461,
+    "rank": 2
+   },
+   {
+    "name": "Chungkhokai Doungel",
+    "party": "IND",
+    "votes": 5107,
+    "rank": 3
+   },
+   {
+    "name": "Ch. Ajang Khongsai",
+    "party": "JD(U)",
+    "votes": 4486,
+    "rank": 4
+   },
+   {
+    "name": "Yamthong Haokip",
+    "party": "BJP",
+    "votes": 2667,
+    "rank": 5
+   },
+   {
+    "name": "Lhingkim Haokip",
+    "party": "INC",
+    "votes": 935,
+    "rank": 6
+   },
+   {
+    "name": "Seikholal Haokip",
+    "party": "NPP",
+    "votes": 645,
+    "rank": 7
+   },
+   {
+    "name": "Jamchinlen Lunkim",
+    "party": "RPI(A)",
+    "votes": 322,
+    "rank": 8
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 103,
+    "rank": 9
+   }
+  ],
+  "totalVotes2022": 26436,
+  "demog": {
+   "sex": {
+    "f": 26364,
+    "m": 26619
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8374,
+    13.2137,
+    13.5855,
+    12.1284,
+    10.7506,
+    9.8768,
+    8.5952,
+    7.7874,
+    6.1397,
+    4.2542,
+    3.1236,
+    2.2875,
+    1.7609,
+    0.8588,
+    0.4398,
+    0.3605
+   ],
+   "region": {
+    "Rural": 52983,
+    "Urban": 0
+   },
+   "totalPop": 52983
+  }
+ },
+ "47": {
+  "no": 47,
+  "acid": 2253,
+  "name": "Karong",
+  "results2022": [
+   {
+    "name": "J Kumo Sha",
+    "party": "IND",
+    "votes": 17191,
+    "rank": 1
+   },
+   {
+    "name": "R Yuh Jonathan Tao",
+    "party": "BJP",
+    "votes": 13649,
+    "rank": 2
+   },
+   {
+    "name": "Khoho Siile Anthony",
+    "party": "NPF",
+    "votes": 10483,
+    "rank": 3
+   },
+   {
+    "name": "D. D. Thaisii",
+    "party": "INC",
+    "votes": 5891,
+    "rank": 4
+   },
+   {
+    "name": "Thaiba Sanii",
+    "party": "IND",
+    "votes": 2102,
+    "rank": 5
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 44,
+    "rank": 6
+   }
+  ],
+  "totalVotes2022": 49360,
+  "demog": {
+   "sex": {
+    "f": 10995,
+    "m": 11101
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.838,
+    13.2151,
+    13.5862,
+    12.1289,
+    10.7486,
+    9.8751,
+    8.5943,
+    7.7842,
+    6.1369,
+    4.2542,
+    3.1273,
+    2.2855,
+    1.765,
+    0.8599,
+    0.439,
+    0.3621
+   ],
+   "region": {
+    "Rural": 22096,
+    "Urban": 0
+   },
+   "totalPop": 22096
+  }
+ },
+ "48": {
+  "no": 48,
+  "acid": 2254,
+  "name": "Mao",
+  "results2022": [
+   {
+    "name": "Losii Dikho",
+    "party": "NPF",
+    "votes": 29591,
+    "rank": 1
+   },
+   {
+    "name": "Woba Joram",
+    "party": "IND",
+    "votes": 21078,
+    "rank": 2
+   },
+   {
+    "name": "Sanii Alexander Maikho",
+    "party": "BJP",
+    "votes": 279,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 26,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 50974,
+  "demog": {
+   "sex": {
+    "f": 6343,
+    "m": 6414
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8522,
+    13.2398,
+    13.5925,
+    12.1424,
+    10.7627,
+    9.8769,
+    8.5914,
+    7.7761,
+    6.1221,
+    4.2408,
+    3.112,
+    2.2811,
+    1.7559,
+    0.8544,
+    0.439,
+    0.3606
+   ],
+   "region": {
+    "Rural": 12757,
+    "Urban": 0
+   },
+   "totalPop": 12757
+  }
+ },
+ "49": {
+  "no": 49,
+  "acid": 2255,
+  "name": "Tadubi",
+  "results2022": [
+   {
+    "name": "N. Kayisii",
+    "party": "NPP",
+    "votes": 21601,
+    "rank": 1
+   },
+   {
+    "name": "M. Francis Ngajokpa",
+    "party": "NPF",
+    "votes": 21052,
+    "rank": 2
+   },
+   {
+    "name": "Robert Tailu Maram",
+    "party": "IND",
+    "votes": 2277,
+    "rank": 3
+   },
+   {
+    "name": "O. Lohrii",
+    "party": "BJP",
+    "votes": 191,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 58,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 45179,
+  "demog": {
+   "sex": {
+    "f": 38902,
+    "m": 39282
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8386,
+    13.2137,
+    13.5846,
+    12.1278,
+    10.7503,
+    9.8767,
+    8.5951,
+    7.7868,
+    6.1381,
+    4.2553,
+    3.1247,
+    2.2869,
+    1.7625,
+    0.8608,
+    0.4387,
+    0.3594
+   ],
+   "region": {
+    "Rural": 78184,
+    "Urban": 0
+   },
+   "totalPop": 78184
+  }
+ },
+ "50": {
+  "no": 50,
+  "acid": 2256,
+  "name": "Kangpokpi",
+  "results2022": [
+   {
+    "name": "Nemcha Kipgen",
+    "party": "BJP",
+    "votes": 14412,
+    "rank": 1
+   },
+   {
+    "name": "Soshim Gurung",
+    "party": "JD(U)",
+    "votes": 9016,
+    "rank": 2
+   },
+   {
+    "name": "Ngamkhohen Kipgen",
+    "party": "INC",
+    "votes": 1376,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 315,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 25119,
+  "demog": {
+   "sex": {
+    "f": 8027,
+    "m": 8106
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.841,
+    13.2151,
+    13.5871,
+    12.1304,
+    10.7482,
+    9.8742,
+    8.5911,
+    7.7853,
+    6.1365,
+    4.2522,
+    3.1302,
+    2.2872,
+    1.7666,
+    0.8616,
+    0.4339,
+    0.3595
+   ],
+   "region": {
+    "Rural": 16133,
+    "Urban": 0
+   },
+   "totalPop": 16133
+  }
+ },
+ "51": {
+  "no": 51,
+  "acid": 2257,
+  "name": "Saitu",
+  "results2022": [
+   {
+    "name": "Haokholet Kipgen",
+    "party": "IND",
+    "votes": 12456,
+    "rank": 1
+   },
+   {
+    "name": "Ngamthang Haokip",
+    "party": "BJP",
+    "votes": 9762,
+    "rank": 2
+   },
+   {
+    "name": "Lamtinthang Haokip",
+    "party": "INC",
+    "votes": 7133,
+    "rank": 3
+   },
+   {
+    "name": "K Lhouvum",
+    "party": "NPP",
+    "votes": 6978,
+    "rank": 4
+   },
+   {
+    "name": "Th. Sanglou Maram",
+    "party": "IND",
+    "votes": 2924,
+    "rank": 5
+   },
+   {
+    "name": "L Johny Gangmei",
+    "party": "JD(U)",
+    "votes": 164,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 95,
+    "rank": 7
+   }
+  ],
+  "totalVotes2022": 39512,
+  "demog": {
+   "sex": {
+    "f": 24769,
+    "m": 25011
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8393,
+    13.2141,
+    13.5838,
+    12.1274,
+    10.7493,
+    9.8755,
+    8.5958,
+    7.7863,
+    6.139,
+    4.2567,
+    3.1237,
+    2.2881,
+    1.7618,
+    0.8598,
+    0.4399,
+    0.3596
+   ],
+   "region": {
+    "Rural": 49780,
+    "Urban": 0
+   },
+   "totalPop": 49780
+  }
+ },
+ "52": {
+  "no": 52,
+  "acid": 2258,
+  "name": "Tamei",
+  "results2022": [
+   {
+    "name": "Awangbow Newmai",
+    "party": "NPF",
+    "votes": 19643,
+    "rank": 1
+   },
+   {
+    "name": "Z. Kikhonbou Newmai",
+    "party": "NPP",
+    "votes": 17945,
+    "rank": 2
+   },
+   {
+    "name": "Wilubou Newmai",
+    "party": "BJP",
+    "votes": 627,
+    "rank": 3
+   },
+   {
+    "name": "GN. Kumuiteung (Dr. Aku)",
+    "party": "INC",
+    "votes": 397,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 32,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 38644,
+  "demog": {
+   "sex": {
+    "f": 12796,
+    "m": 12922
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.841,
+    13.2125,
+    13.5858,
+    12.1277,
+    10.7512,
+    9.8764,
+    8.5932,
+    7.7883,
+    6.1397,
+    4.2577,
+    3.1262,
+    2.2863,
+    1.7614,
+    0.8593,
+    0.4355,
+    0.3577
+   ],
+   "region": {
+    "Rural": 25718,
+    "Urban": 0
+   },
+   "totalPop": 25718
+  }
+ },
+ "53": {
+  "no": 53,
+  "acid": 2259,
+  "name": "Tamenglong",
+  "results2022": [
+   {
+    "name": "Janghemlung Panmei",
+    "party": "NPP",
+    "votes": 10456,
+    "rank": 1
+   },
+   {
+    "name": "Huri Golmei",
+    "party": "BJP",
+    "votes": 9147,
+    "rank": 2
+   },
+   {
+    "name": "Samuel Jendai",
+    "party": "JD(U)",
+    "votes": 6447,
+    "rank": 3
+   },
+   {
+    "name": "Khangthuanang Panmei",
+    "party": "NPF",
+    "votes": 4481,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 122,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 30653,
+  "demog": {
+   "sex": {
+    "f": 25143,
+    "m": 25387
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8367,
+    13.2139,
+    13.584,
+    12.1274,
+    10.75,
+    9.8773,
+    8.5949,
+    7.7855,
+    6.1409,
+    4.2549,
+    3.1249,
+    2.2877,
+    1.7633,
+    0.8589,
+    0.4393,
+    0.3602
+   ],
+   "region": {
+    "Rural": 50530,
+    "Urban": 0
+   },
+   "totalPop": 50530
+  }
+ },
+ "54": {
+  "no": 54,
+  "acid": 2260,
+  "name": "Nungba",
+  "results2022": [
+   {
+    "name": "Dinganglung Gangmei",
+    "party": "BJP",
+    "votes": 14464,
+    "rank": 1
+   },
+   {
+    "name": "Gaikhangam",
+    "party": "INC",
+    "votes": 10678,
+    "rank": 2
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 59,
+    "rank": 3
+   }
+  ],
+  "totalVotes2022": 25201,
+  "demog": {
+   "sex": {
+    "f": 13641,
+    "m": 13771
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8373,
+    13.2168,
+    13.5853,
+    12.1261,
+    10.7508,
+    9.8752,
+    8.5948,
+    7.7886,
+    6.1396,
+    4.2573,
+    3.1227,
+    2.2873,
+    1.762,
+    0.8573,
+    0.4378,
+    0.3612
+   ],
+   "region": {
+    "Rural": 27412,
+    "Urban": 0
+   },
+   "totalPop": 27412
+  }
+ },
+ "55": {
+  "no": 55,
+  "acid": 2261,
+  "name": "Tipaimukh",
+  "results2022": [
+   {
+    "name": "Ngursanglur Sanate",
+    "party": "JD(U)",
+    "votes": 6267,
+    "rank": 1
+   },
+   {
+    "name": "Chalton Lien Amo",
+    "party": "BJP",
+    "votes": 5018,
+    "rank": 2
+   },
+   {
+    "name": "Thangthatling Sinate",
+    "party": "NPP",
+    "votes": 1315,
+    "rank": 3
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 128,
+    "rank": 4
+   }
+  ],
+  "totalVotes2022": 12728,
+  "demog": {
+   "sex": {
+    "f": 3596,
+    "m": 3631
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8291,
+    13.2143,
+    13.5879,
+    12.135,
+    10.7513,
+    9.8658,
+    8.6066,
+    7.7764,
+    6.1436,
+    4.248,
+    3.1272,
+    2.2831,
+    1.7711,
+    0.8579,
+    0.4428,
+    0.3598
+   ],
+   "region": {
+    "Rural": 7227,
+    "Urban": 0
+   },
+   "totalPop": 7227
+  }
+ },
+ "56": {
+  "no": 56,
+  "acid": 2262,
+  "name": "Thanlon",
+  "results2022": [
+   {
+    "name": "Vungzagin Valte",
+    "party": "BJP",
+    "votes": 4863,
+    "rank": 1
+   },
+   {
+    "name": "Khanthang Tonsing",
+    "party": "NPP",
+    "votes": 4112,
+    "rank": 2
+   },
+   {
+    "name": "Langkhanpau Guite",
+    "party": "IND",
+    "votes": 2789,
+    "rank": 3
+   },
+   {
+    "name": "Thangkhosei Guite",
+    "party": "JD(U)",
+    "votes": 797,
+    "rank": 4
+   },
+   {
+    "name": "Lalhlunsang Sungte",
+    "party": "SHS",
+    "votes": 658,
+    "rank": 5
+   },
+   {
+    "name": "Thangkhangin",
+    "party": "Lok Janshakti Party(Ram Vilas)",
+    "votes": 71,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 50,
+    "rank": 7
+   }
+  ],
+  "totalVotes2022": 13340,
+  "demog": {
+   "sex": {
+    "f": 2889,
+    "m": 2915
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8415,
+    13.215,
+    13.5768,
+    12.1296,
+    10.7512,
+    9.8725,
+    8.5975,
+    7.7705,
+    6.1509,
+    4.2557,
+    3.1185,
+    2.2915,
+    1.7574,
+    0.8615,
+    0.448,
+    0.3618
+   ],
+   "region": {
+    "Rural": 5804,
+    "Urban": 0
+   },
+   "totalPop": 5804
+  }
+ },
+ "57": {
+  "no": 57,
+  "acid": 2263,
+  "name": "Henglep",
+  "results2022": [
+   {
+    "name": "Letzamang Haokip",
+    "party": "BJP",
+    "votes": 13897,
+    "rank": 1
+   },
+   {
+    "name": "T. Manga Vaiphei",
+    "party": "INC",
+    "votes": 6049,
+    "rank": 2
+   },
+   {
+    "name": "Nehminthang Haokip",
+    "party": "NPP",
+    "votes": 3824,
+    "rank": 3
+   },
+   {
+    "name": "T. Thangzalam Haokip",
+    "party": "SHS",
+    "votes": 2605,
+    "rank": 4
+   },
+   {
+    "name": "Genneikhup",
+    "party": "JD(U)",
+    "votes": 1097,
+    "rank": 5
+   },
+   {
+    "name": "Sehpu Haokip",
+    "party": "IND",
+    "votes": 84,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 40,
+    "rank": 7
+   }
+  ],
+  "totalVotes2022": 27596,
+  "demog": {
+   "sex": {
+    "f": 8086,
+    "m": 8166
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8363,
+    13.2107,
+    13.586,
+    12.1277,
+    10.7494,
+    9.8757,
+    8.5897,
+    7.7898,
+    6.1408,
+    4.2579,
+    3.1196,
+    2.2889,
+    1.7659,
+    0.8553,
+    0.443,
+    0.363
+   ],
+   "region": {
+    "Rural": 16252,
+    "Urban": 0
+   },
+   "totalPop": 16252
+  }
+ },
+ "58": {
+  "no": 58,
+  "acid": 2264,
+  "name": "Churachandpur",
+  "results2022": [
+   {
+    "name": "L.M. KHAUTE",
+    "party": "JD(U)",
+    "votes": 18231,
+    "rank": 1
+   },
+   {
+    "name": "V HANGKHANLIAN",
+    "party": "BJP",
+    "votes": 17607,
+    "rank": 2
+   },
+   {
+    "name": "H. MANGCHINKHUP PAITE",
+    "party": "INC",
+    "votes": 8482,
+    "rank": 3
+   },
+   {
+    "name": "JAMES KHUMA HAUZEL",
+    "party": "IND",
+    "votes": 2244,
+    "rank": 4
+   },
+   {
+    "name": "Th. THANGZALIAN",
+    "party": "NPP",
+    "votes": 515,
+    "rank": 5
+   },
+   {
+    "name": "Dr. JAINSON HAOKIP D.D.",
+    "party": "Kuki National Assembly",
+    "votes": 248,
+    "rank": 6
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 174,
+    "rank": 7
+   },
+   {
+    "name": "H.LIANCHINTHANG",
+    "party": "Lok Janshakti Party(Ram Vilas)",
+    "votes": 170,
+    "rank": 8
+   }
+  ],
+  "totalVotes2022": 47671,
+  "demog": {
+   "sex": {
+    "f": 2782,
+    "m": 2810
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8283,
+    13.2153,
+    13.5908,
+    12.1245,
+    10.7475,
+    9.8712,
+    8.6016,
+    7.779,
+    6.1338,
+    4.2561,
+    3.1295,
+    2.289,
+    1.7704,
+    0.8584,
+    0.4471,
+    0.3577
+   ],
+   "region": {
+    "Rural": 5592,
+    "Urban": 0
+   },
+   "totalPop": 5592
+  }
+ },
+ "59": {
+  "no": 59,
+  "acid": 2265,
+  "name": "Saikot",
+  "results2022": [
+   {
+    "name": "Paolienlal Haokip",
+    "party": "BJP",
+    "votes": 18457,
+    "rank": 1
+   },
+   {
+    "name": "Khaipao Haokip",
+    "party": "NPP",
+    "votes": 12586,
+    "rank": 2
+   },
+   {
+    "name": "T. N Haokip",
+    "party": "INC",
+    "votes": 10250,
+    "rank": 3
+   },
+   {
+    "name": "Karong Onkholer",
+    "party": "IND",
+    "votes": 5169,
+    "rank": 4
+   },
+   {
+    "name": "George T. Haokip",
+    "party": "NCP",
+    "votes": 4796,
+    "rank": 5
+   },
+   {
+    "name": "JOSHUA THIEK",
+    "party": "Kuki National Assembly",
+    "votes": 837,
+    "rank": 6
+   },
+   {
+    "name": "JOHN H PULAMTE",
+    "party": "JD(U)",
+    "votes": 231,
+    "rank": 7
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 186,
+    "rank": 8
+   },
+   {
+    "name": "JOHN MK THANG",
+    "party": "IND",
+    "votes": 78,
+    "rank": 9
+   }
+  ],
+  "totalVotes2022": 52590,
+  "demog": {
+   "sex": {
+    "f": 52301,
+    "m": 52810
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8377,
+    13.2137,
+    13.5847,
+    12.1281,
+    10.7515,
+    9.8762,
+    8.5947,
+    7.7861,
+    6.1383,
+    4.2555,
+    3.1253,
+    2.2871,
+    1.7629,
+    0.86,
+    0.4386,
+    0.3596
+   ],
+   "region": {
+    "Rural": 66352,
+    "Urban": 38759
+   },
+   "totalPop": 105111
+  }
+ },
+ "60": {
+  "no": 60,
+  "acid": 2266,
+  "name": "Singhat",
+  "results2022": [
+   {
+    "name": "Chinlunthang",
+    "party": "KPA",
+    "votes": 12098,
+    "rank": 1
+   },
+   {
+    "name": "Ginsuanhau Zou",
+    "party": "BJP",
+    "votes": 10179,
+    "rank": 2
+   },
+   {
+    "name": "T. Hangkhanpau",
+    "party": "JD(U)",
+    "votes": 1031,
+    "rank": 3
+   },
+   {
+    "name": "Tuankhan Kiamlo Hangzo",
+    "party": "INC",
+    "votes": 267,
+    "rank": 4
+   },
+   {
+    "name": "None Of The Above",
+    "party": "NOTA",
+    "votes": 57,
+    "rank": 5
+   }
+  ],
+  "totalVotes2022": 23632,
+  "demog": {
+   "sex": {
+    "f": 9059,
+    "m": 9142
+   },
+   "ageLabels": [
+    "18-19",
+    "20-24",
+    "25-29",
+    "30-34",
+    "35-39",
+    "40-44",
+    "45-49",
+    "50-54",
+    "55-59",
+    "60-64",
+    "65-69",
+    "70-74",
+    "75-79",
+    "80-84",
+    "85-89",
+    "90+"
+   ],
+   "ageProp": [
+    4.8459,
+    13.2191,
+    13.5817,
+    12.1202,
+    10.7467,
+    9.8731,
+    8.5929,
+    7.7853,
+    6.1425,
+    4.258,
+    3.1262,
+    2.2911,
+    1.7636,
+    0.8571,
+    0.4395,
+    0.3571
+   ],
+   "region": {
+    "Rural": 18201,
+    "Urban": 0
+   },
+   "totalPop": 18201
+  }
+ }
+}
